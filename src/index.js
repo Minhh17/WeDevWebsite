@@ -1,12 +1,12 @@
 const express = require('express');
-const morgan = require('morgan'); // 
+const morgan = require('morgan'); // bắn ra log ở local vs các request đến node server
 const app = express();
 const port = 3000;
 
+const route = require("./routes");
+
 app.use(morgan('combined'));
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+route(app);
 
 // 127.0.0.1:3000 - localhost:3000
 app.listen(port, () => {
