@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+{{!-----------------------------------------------------------------------------
+Layouts là phần giao diện chung (tính cả header, footer, nav, ...)
+View là các nội dung chính của trang, nằm trong layouts
+Để kết nối giữa layouts và view, ta sử dụng {{{body}}} trong layouts  
+------------------------------------------------------------------------------}}
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +17,7 @@
 
 <body>
     <div class="app">
-        <header>
+        <header> 
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
