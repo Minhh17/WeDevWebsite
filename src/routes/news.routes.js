@@ -4,7 +4,7 @@ const newsController = require('../app/controllers/NewsController'); // la doi t
 
 // newsController.index;
 
-router.use('/', newsController.index);
+router.get('/', newsController.index);  // boc tach ro rang controller va vs model
 
 
 module.exports = router;
