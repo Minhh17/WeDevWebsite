@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <%- include('layouts/navbar'); -%>
+            <!-- Page Header -->
+            <header class="masthead">
+                <h1 style="margin: 20px;">Student List</h1>
+            </header>
+
+            <!-- Main Content -->
+            <div class="bodyContainer">
+                <ul>
+                    <% data.forEach(student => { %>
+                        <li><%= student.student_id %> -<%= student.first_name %> <%= student.last_name %> - <%= student.email %> - <%= student.phone %></li>
+                    <% }); %>
+                </ul>
+            </div>
+
+            <hr>
+            <div class="footerGif"><iframe src="https://giphy.com/embed/QaYqtStGSYNd21aXQp" width="100%" height="100%"
+                    style="position:absolute" frameBorder="0"></iframe></div>
+            <%- include('layouts/scripts'); -%>
+                <%- include('layouts/footer'); -%>
+    </body>
+
+</html>

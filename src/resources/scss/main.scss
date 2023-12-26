@@ -15,9 +15,16 @@ h1 {
     color: $red-color;
 }
 
+.footer {
+    margin: 0;
+    padding: 20px;
+    text-align: left;
+    background-image: url('/img/footer-bg.svg');
+    background-size: 100% ;
+}
+
 .bodyContainer {
     margin-top: 5px;
-
     padding: 50px;
     width: 90%;
     margin-left: auto;
@@ -45,4 +52,13 @@ h1 {
 
   .grid-item p {
     font-size: 18px;
+  }
+
+  .footerGif {
+    margin: 0;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    left: 70%;
+    top: 50px;
   }
