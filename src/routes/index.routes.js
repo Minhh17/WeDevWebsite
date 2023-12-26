@@ -1,16 +1,12 @@
-const newsRouter = require('./news.routes');
+const adminRouter = require('./admin.routes');
 
 function routes(app) {
 
-  app.use('/news', newsRouter);
-
+  app.use('/admin', adminRouter);
 
   app.get('/', (req, res) => {
-    res.render('home');
+    res.render('index');
   });
-
-
-  
 }
 
 module.exports = routes;
