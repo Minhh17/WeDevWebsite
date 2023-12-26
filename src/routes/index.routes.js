@@ -1,4 +1,6 @@
 const adminRouter = require('./admin.routes');
+const studentRouter = require('./student.routes');
+const db = require('../config/db/index');
 
 function routes(app) {
 
@@ -7,6 +9,9 @@ function routes(app) {
   app.get('/', (req, res) => {
     res.render('index');
   });
+
+  app.use('/student', studentRouter);
+
 }
 
 module.exports = routes;

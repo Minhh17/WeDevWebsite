@@ -15,6 +15,8 @@ console.log(path.join(__dirname,'public'));
 // HTTP logger
 app.use(morgan('combined'));
 
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 //  Template engine
 app.set('view engine','ejs') // set ejs là template engine mặc định
@@ -28,7 +30,7 @@ console.log(path.join(__dirname, 'resources','views'));
 routes(app);  // luồng đi ở đây là đi từ routes này nhận 1 cái express instant app -> index.router.js -> news -> newsController -> newsModel -> database
 
 // Connect to DB
-db.connect();
+// db.connect();
 
 // 127.0.0.1:3000 - localhost:3000
 app.listen(port, () => {
