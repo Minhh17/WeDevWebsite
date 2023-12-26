@@ -2,20 +2,27 @@ const express = require('express');
 const routes = require('./routes/index.routes');
 const db = require('./config/db/index');
 const morgan = require('morgan'); // bắn ra log ở local vs các request đến node server
-const { engine } = require('express-handlebars'); // template engine handlebarsconst { engine } = require('express-handlebars');
+const ejs = require('ejs') // template engine handlebarsconst { engine } = require('express-handlebars');
 const app = express();
 const port = 3000;
 const path = require('path');
 
 
+
+app.use(express.static(path.join(__dirname,'public'))); // set đường dẫn public
+console.log(path.join(__dirname,'public'));
+
 // HTTP logger
 app.use(morgan('combined'));
 
-//  Template engine
 
-app.engine('handlebars', engine({ extname: '.hbs', defaultLayout: "main"}));
-app.set('view engine', 'handlebars'); // set express-handlebars là template engine mặc định
-app.set('views', path.join(__dirname, 'resources', 'views')) // set đường dẫn đến thư mục chứa các file view
+//  Template engine
+app.set('view engine','ejs') // set ejs là template engine mặc định
+
+// Set path views
+app.set('views', path.join(__dirname, 'resources','views')) // set đường dẫn views
+console.log(path.join(__dirname, 'resources','views'));
+
 
 // Routes init
 routes(app);  // luồng đi ở đây là đi từ routes này nhận 1 cái express instant app -> index.router.js -> news -> newsController -> newsModel -> database

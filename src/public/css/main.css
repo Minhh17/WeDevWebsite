@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.test {
+  font-size: 1rem; }
+
+h1 {
+  font-size: 2rem;
+  color: red; }
+
+.bodyContainer {
+  margin-top: 5px;
+  padding: 50px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto; }
+
+.grid-container {
+  padding: 20px;
+  background-color: #fff3f3;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: auto auto auto;
+  margin: 20px; }
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center; }
+
+.grid-item p {
+  font-size: 18px; }
