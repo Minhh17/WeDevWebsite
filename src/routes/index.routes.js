@@ -6,11 +6,15 @@ function routes(app) {
 
   app.use('/admin', adminRouter);
 
+  app.use('/student', studentRouter);
+
   app.get('/', (req, res) => {
     res.render('index');
   });
 
-  app.use('/student', studentRouter);
+  app.get('/login', (req, res) => {
+    res.render('login');
+  });
 
 }
 

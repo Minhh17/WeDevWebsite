@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <!-- Page Header -->
+        <div class="loginContainer">
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Don't share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">I'm a human, not robot</label>
+                </div>
+                <button type="submit" id="submitBtn" class="btn btn-primary">
+                    <a class="nav-link" id="loginLink" href="#">Submit</a>
+                </button>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById("submitBtn").addEventListener("dblclick", function () {
+                // alert("You have logged in successfully!");
+                window.location.href = "/";
+            });
+        </script>
+
+        <!-- Main Content -->
+        <%- include('layouts/scripts'); -%>
+    </body>
+
+</html>
