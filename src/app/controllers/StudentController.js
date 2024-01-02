@@ -1,10 +1,10 @@
-const student = require("../models/student");
+const Student = require("../models/student");
 
 class StudentController {   // function handler 
 
     // [GET] /student
     index(req, res) {
-        student.getDataFromDB(req.query.title, (err, data) => {
+        Student.getDataFromDB(req.query.title, (err, data) => {
             if (err) {
                 res.status(500).send({
                     message: err.message || "Some error occurred while retrieving students."
@@ -20,16 +20,27 @@ class StudentController {   // function handler
         res.render('createStudent');
     }
 
+    // [POST] /student/save
+    save(req, res) {
+        // res.json(req.body);
+ 
+        Student.create(req.body);  // call create function in model
+
+        res.redirect('/student');
+
+    }
+
+
     // [GET] /student/getData
     getDataFromDB(req, res) {
-        student.getDataFromDB(req.query.title, (err, data) => {
+        Student.getDataFromDB(req.query.title, (err, data) => {
             if (err)
                 res.status(500).send({
                     message:
                         err.message || "Some error occurred while retrieving students."
                 });
             else {
-                res.send(data);                
+                res.send(data);
                 return data;
             }
         });

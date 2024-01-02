@@ -2,13 +2,23 @@ const sql = require("../../config/db/index");
 
 // constructor
 const Student = function(student) {  // constructor function
-  this.title = student.title;
-  this.description = student.description;
-  this.published = student.published;  
+  this.first_name = student.first_name;
+  this.last_name = student.last_name;
+  this.phone = student.phone; 
+  this.email = student.email;
+  this.address = student.address;
+  this.dob = student.dob; 
 };
 
 Student.create = (newStudent, result) => {
-  sql.query("INSERT INTO student SET ?", newStudent, (err, res) => {  // INSERT INTO student SET ?
+  sql.query("INSERT INTO student (first_name, last_name, phone, address, email, dob) VALUES (?, ?, ?, ?, ?, ?)",         [
+    newStudent.first_name,
+    newStudent.last_name,
+    newStudent.phone,
+    newStudent.address,
+    newStudent.email,
+    newStudent.dob
+  ], (err, res) => {  // INSERT INTO student SET ?
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -16,7 +26,7 @@ Student.create = (newStudent, result) => {
     }
 
     console.log("created student: ", { id: res.insertId, ...newStudent });
-    result(null, { id: res.insertId, ...newStudent });
+    // result(null, { id: res.insertId, ...newStudent });
   });
 };
 
