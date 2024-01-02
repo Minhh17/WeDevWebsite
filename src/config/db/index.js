@@ -20,7 +20,7 @@ db.connect(function (err) {
     // con.query("CREATE TABLE student (name VARCHAR(255), address VARCHAR(255))", function (err, result) {
     //     console.log("Table created");
     // });
-    // con.query("INSERT INTO student (name, address) VALUES ('Haiminh', 'Highway 37')", function (err, result) {
+    // db.query("INSERT INTO exam_process (enrollment_id, exam_id, result) VALUES ('1', '1', '9    ')", function (err, result) {
     //     console.log("1 record inserted");
     // });
 
