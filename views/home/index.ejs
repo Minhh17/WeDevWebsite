@@ -15,40 +15,7 @@
 
     <!-- Main Content -->
     <div class="bodyContainer">
-      <h1>Minh is here</h1>
-      <p>Courses</p>
-      <div class="grid-container">
-        <!-- Courses List -->
-        <div class="course grid-item">
-          <h2>IELTS Premium</h2>
-          <img src="\img\courses.jpg" alt="" />
-          <hr />
-          <p>Description of Course 1</p>
-          <p>Description of Course 3</p>
-        </div>
-
-        <div class="course grid-item">
-          <h2>IELTS Golden Pass</h2>
-          <img src="\img\courses.jpg" alt="" />
-          <hr />
-          <p>Description of Course 2</p>
-          <p>Description of Course 3</p>
-        </div>
-
-        <div class="course grid-item">
-          <h2>TOEIC 4 Skills</h2>
-          <img src="\img\courses.jpg" alt="" />
-          <hr />
-          <p>Description of Course 3</p>
-          <p>Minh ddinhj viet gi do</p>
-        </div>
-        <!-- End of Courses List -->
-      </div>
-
-      <hr />
-
-      <h1>Lecture</h1>
-
+      <h1>Courses</h1>
       <%if (courses.length > 0) { %>
       <div class="grid-container">
         <!-- Courses List -->
@@ -57,8 +24,29 @@
           <h2><%= course.title %></h2>
           <img src="\img\courses.jpg" alt="" />
           <hr />
-          <p>Description of Course 1</p>
+          <p><%= course.infomation %></p>
           <p><%= course.fee %> VND</p>
+        </div>
+        <% } %>
+
+        <!-- End of Courses List -->
+      </div>
+      <% } %>
+
+      <hr />
+
+      <h1>Lecture</h1>
+
+      <%if (lecturers.length > 0) { %>
+      <div class="grid-container">
+        <!-- Courses List -->
+        <% for (let lecturer of lecturers) { %>
+        <div class="course grid-item">
+          <h2><%= lecturer.first_name + " " + lecturer.last_name %></h2>
+          <img src="\img\courses.jpg" alt="" />
+          <hr />
+          <p><%= lecturer.phone %></p>
+          <p><%= lecturer.email %></p>
         </div>
         <% } %>
 
