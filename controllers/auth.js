@@ -36,10 +36,17 @@ exports.postLogin = async (req, res, next) => {
       id: id,
       role: role, // 'admin', 'student', or 'lecturer'
     };
-    console.log(req.session.user);
+    console.log(!req.session.user);
     res.redirect("/");
   } else {
     console.log("Login failed");
     res.redirect("/login");
   }
+};
+
+exports.getLogout = async (req, res, next) => {
+  req.session.destroy((err) => {
+    console.log(err);
+    res.redirect("/");
+  });
 };

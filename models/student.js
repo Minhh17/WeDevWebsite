@@ -42,8 +42,6 @@ module.exports = class Student {
           )
         );
       }
-
-      console.log(students);
       return students;
     } catch (err) {
       throw err;
@@ -78,7 +76,6 @@ module.exports = class Student {
         "SELECT * FROM english_center.student WHERE student_id = ?",
         [student_id]
       );
-      console.log(rows);
       return rows[0];
     } catch (err) {
       console.log(err);
@@ -101,7 +98,6 @@ module.exports = class Student {
           student.student_id,
         ]
       );
-      console.log(result);
     } catch (err) {
       console.log(err);
       throw err;
@@ -114,7 +110,6 @@ module.exports = class Student {
         "DELETE FROM english_center.student WHERE student_id = ?",
         [student_id]
       );
-      console.log(result);
     } catch (err) {
       console.log(err);
       throw err;

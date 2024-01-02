@@ -12,6 +12,7 @@ exports.getIndex = (req, res, next) => {
 exports.getStudents = async (req, res, next) => {
   students = await Student.getAllStudents();
   res.render("admin/students", {
+    isLogged: req.session.user ? true : false,
     students: students,
     pageTitle: "Students",
     path: "/admin/students",
@@ -20,6 +21,7 @@ exports.getStudents = async (req, res, next) => {
 
 exports.getAddStudent = (req, res, next) => {
   res.render("admin/add-student", {
+    isLogged: req.session.user ? true : false,
     pageTitle: "Add Student",
     path: "/admin/add-student",
     formsCSS: true,
