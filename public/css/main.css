@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.test {
+  font-size: 1rem; }
+
+h1 {
+  font-size: 2rem;
+  color: red; }
+
+.footer {
+  margin: 0;
+  padding: 20px;
+  text-align: left;
+  background-image: url("/img/footer-bg.svg");
+  background-size: 100%; }
+
+.bodyContainer {
+  margin-top: 5px;
+  padding: 50px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto; }
+
+.grid-container {
+  padding: 20px;
+  background-color: #fff3f3;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: auto auto auto;
+  margin: 20px; }
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center; }
+
+.grid-item p {
+  font-size: 18px; }
+
+.footerGif {
+  margin: 0;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 70%;
+  top: 50px; }
+
+.loginContainer {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-image: url("https://images3.alphacoders.com/130/1305748.jpg");
+  background-size: cover; }
+
+.loginContainer form {
+  margin-top: 5%;
+  margin-left: 45%;
+  width: 50%;
+  height: 50%;
+  padding: 50px;
+  background-color: #feffe5;
+  border-radius: 10px; }
