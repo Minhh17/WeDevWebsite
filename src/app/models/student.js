@@ -21,10 +21,10 @@ Student.create = (newStudent, result) => {
 };
 
 Student.getDataFromDB = (title, result) => {
-  let query = "SELECT * FROM student";
-
+  // let query = "Select * from student cross join enrollment on student.student_id = enrollment.student_id cross join exam_process on exam_process.enrollment_id = enrollment.enrollment_id";
+  let query = "Select * from student";
   if (title) {
-    query += ` WHERE title LIKE '%${title}%'`;
+    query += ` WHERE last_name LIKE '%${title}%'`;
   }
 
   sql.query(query, (err, res) => {
@@ -33,7 +33,7 @@ Student.getDataFromDB = (title, result) => {
       result(null, err);
       return;
     }
-    console.log("tutorials: ", res);
+    console.log("student: ", res);
     result(null, res);
   });
 };
