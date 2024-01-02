@@ -29,14 +29,18 @@ exports.getAddStudent = (req, res, next) => {
 };
 
 exports.postAddStudent = (req, res, next) => {
-  const student_id = req.body.student_id;
+  // const student_id = req.body.student_id;
+  const student_id = null;
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const phone = req.body.phone;
-  const address = req.body.address;
-  const avatar = req.body.avatar;
+  // const address = req.body.address;
+  const address = null;
+  // const avatar = req.body.avatar;
+  const avatar = null;
   const email = req.body.email;
-  const dob = req.body.dob;
+  // const dob = req.body.dob;
+  const dob = null;
   const student = new Student(
     student_id,
     first_name,

@@ -6,7 +6,7 @@ const checkRole = require("../middleware/check-role");
 
 const router = express.Router();
 
-// ------------ MY CODE ------------
+// ------------ STUDENT CONTROLLER ------------
 
 // /admin => GET
 router.get("/", checkRole("admin"), adminController.getIndex);
@@ -15,18 +15,10 @@ router.get("/", checkRole("admin"), adminController.getIndex);
 router.get("/students", checkRole("admin"), adminController.getStudents);
 
 // /admin/add-student => GET
-router.get(
-  "/students/add-student",
-  checkRole("admin"),
-  adminController.getAddStudent
-);
+router.get("/add-student", checkRole("admin"), adminController.getAddStudent);
 
 // /admin/add-student => POST
-router.post(
-  "/students/add-student",
-  checkRole("admin"),
-  adminController.postAddStudent
-);
+router.post("/add-student", checkRole("admin"), adminController.postAddStudent);
 
 // /admin/students/:student_id => GET
 router.get(

@@ -11,14 +11,58 @@
 
     <!-- Main Content -->
     <div class="bodyContainer">
-      <ul>
-        <% students.forEach(student => { %>
-        <li>
-          <%= student.student_id %> -<%= student.first_name %> <%=
-          student.last_name %> - <%= student.email %> - <%= student.phone %>
-        </li>
-        <% }); %>
-      </ul>
+      <div>
+        <button
+          type="button"
+          class="btn btn-light"
+          onclick="window.location.href='/admin/add-student'"
+        >
+          Add Student
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          onclick="window.location.href='/student/create'"
+        >
+          Add Student
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          onclick="window.location.href='/student/create'"
+        >
+          Add Student
+        </button>
+      </div>
+
+      <hr />
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Date Of Birth</th>
+            <th scope="col">Result</th>
+          </tr>
+        </thead>
+        <tbody id="mytable">
+          <% students.forEach(student=> { %>
+          <tr>
+            <td><%= student.student_id %></td>
+            <td><%= student.first_name %></td>
+            <td><%= student.last_name %></td>
+            <td><%= student.email %></td>
+            <td><%= student.phone %></td>
+            <td><%= student.dob %></td>
+            <td><%= student.result %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
     </div>
 
     <hr />
