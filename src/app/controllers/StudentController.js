@@ -15,6 +15,11 @@ class StudentController {   // function handler
         });
     }
 
+    // [GET] /student/create
+    create(req, res) {
+        res.render('createStudent');
+    }
+
     // [GET] /student/getData
     getDataFromDB(req, res) {
         student.getDataFromDB(req.query.title, (err, data) => {
