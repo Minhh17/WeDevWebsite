@@ -23,6 +23,10 @@ db.connect(function (err) {
     // db.query("INSERT INTO exam_process (enrollment_id, exam_id, result) VALUES ('1', '1', '9    ')", function (err, result) {
     //     console.log("1 record inserted");
     // });
+    // db.query("DELETE FROM student WHERE student_id = 2003;", function (err, result) {
+    //     console.log("1 record deleted");
+    // });
+
 
 });
 

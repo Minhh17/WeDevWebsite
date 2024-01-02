@@ -7,10 +7,12 @@
       <!-- Page Header -->
 
       <div class="bodyContainer"
-        style="height: 65%; width: 66%; background-color: rgb(236, 255, 237); border-radius: 15px; margin-top: 6%;">
+        style="height: 65%; width: 66%; background-color: rgb(236, 255, 237); border-radius: 15px; margin-top: 2%;">
         <h1 style="margin: 20px;">Add Student</h1>
-        <form class="row g-3 needs-validation" novalidate>
-          <div class="col-md-4">
+
+        <!-- <form class="row g-3 needs-validation" method="POST" action="/student/save" >
+
+          <div class="col-md-4" id="first_name" name="first_name">
             <label for="validationCustom01" class="form-label">First name</label>
             <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
           </div>
@@ -54,7 +56,41 @@
           <div class="col-12">
             <button class="btn btn-primary" type="submit">Save</button>
           </div>
+        </form> -->
+
+        <form method="POST" action="/student/save">
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name">
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone">
+          </div>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="Username" class="form-control" placeholder="Username">
+          </div>  
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" id="password" name="Password" class="form-control" placeholder="Password"> 
+          </div>
+
+          <div class="mt-4">
+            <button class="btn btn-primary" type="submit">Save</button>
+          </div>  
         </form>
+
+
+
       </div>
 
       <!-- Main Content -->

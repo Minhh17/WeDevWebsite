@@ -5,5 +5,6 @@ const studentController = require('../app/controllers/StudentController'); // la
 router.get('/', studentController.index);  // boc tach ro rang controller va vs model
 router.get('/getData', studentController.getDataFromDB); 
 router.get('/create', studentController.create);  
+router.post('/save', studentController.save);
 
 module.exports = router;
