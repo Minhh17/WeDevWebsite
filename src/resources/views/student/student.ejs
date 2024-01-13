@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('layouts/header'); -%>
+<%- include('../layouts/header'); -%>
 
     <body>
-        <%- include('layouts/navbar'); -%>
+        <%- include('../layouts/navbar'); -%>
             <!-- Page Header -->
             <header class="masthead">
                 <h1 style="margin: 20px;">Student List</h1>
@@ -12,11 +12,10 @@
             <!-- Main Content -->
             <div class="bodyContainer">
                 <div>
+                    <!-- <button type="button" class="btn btn-light" onclick="window.location.href='/admin/createStudent'">Add Student</button>                
                     <button type="button" class="btn btn-light" onclick="window.location.href='/student/create'">Add Student</button>                
-                    <button type="button" class="btn btn-light" onclick="window.location.href='/student/create'">Add Student</button>                
-                    <button type="button" class="btn btn-light" onclick="window.location.href='/student/create'">Add Student</button>                
-
-
+                    <button type="button" class="btn btn-light" onclick="window.location.href='/student/create'">Add Student</button>                 -->
+                    
                 </div>
 
                 <hr>
@@ -68,8 +67,8 @@
             <hr>
             <div class="footerGif"><iframe src="https://giphy.com/embed/QaYqtStGSYNd21aXQp" width="100%" height="100%"
                     style="position:absolute" frameBorder="0"></iframe></div>
-            <%- include('layouts/scripts'); -%>
-                <%- include('layouts/footer'); -%>
+            <%- include('../layouts/scripts'); -%>
+                <%- include('../layouts/footer'); -%>
     </body>
 
 </html>

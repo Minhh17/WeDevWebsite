@@ -5,5 +5,11 @@ const adminController = require('../app/controllers/AdminController'); // la doi
 // newsController.index;
 
 router.get('/', adminController.index);  // boc tach ro rang controller va vs model
+router.get('/createStudent', adminController.createStudent);
+router.post('/save', adminController.save);
+router.get('/getData', adminController.getDataFromDB);
+// router.get('/edit/:id', adminController.edit);
+// router.post('/update/:id', adminController.update);
+// router.post('/delete/:id', adminController.delete);
 
 module.exports = router;
