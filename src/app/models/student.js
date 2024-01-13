@@ -43,7 +43,7 @@ Student.getDataFromDB = (title, result) => {
       result(null, err);
       return;
     }
-    console.log("student: ", res);
+    // console.log("student: ", res);
     result(null, res);
   });
 };

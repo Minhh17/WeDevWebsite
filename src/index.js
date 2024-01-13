@@ -6,7 +6,7 @@ const ejs = require('ejs') // template engine handlebarsconst { engine } = requi
 const app = express();
 const port = 3000;
 const path = require('path');
-
+const session = require("express-session");
 
 
 app.use(express.static(path.join(__dirname,'public'))); // set đường dẫn public
@@ -25,6 +25,14 @@ app.set('view engine','ejs') // set ejs là template engine mặc định
 app.set('views', path.join(__dirname, 'resources','views')) // set đường dẫn views
 console.log(path.join(__dirname, 'resources','views'));
 
+// Session config
+app.use(
+  session({
+    secret: "we dev website",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // Routes init
 routes(app);  // luồng đi ở đây là đi từ routes này nhận 1 cái express instant app -> index.router.js -> news -> newsController -> newsModel -> database

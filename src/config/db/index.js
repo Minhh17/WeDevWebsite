@@ -27,7 +27,6 @@ db.connect(function (err) {
     //     console.log("1 record deleted");
     // });
 
-
 });
 
 module.exports = db;

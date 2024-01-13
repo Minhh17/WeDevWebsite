@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('layouts/header'); -%>
+<%- include('../layouts/header'); -%>
 
   <body>
-    <%- include('layouts/navbar'); -%>
+    <%- include('../layouts/navbar'); -%>
       <!-- Page Header -->
 
       <div class="bodyContainer"
@@ -61,40 +61,45 @@
         <form method="POST" action="/student/save">
           <div class="form-group">
             <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name">
+            <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" required>
           </div>
           <div class="form-group">
             <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name">
+            <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+            <input type="text" id="email" name="email" class="form-control" placeholder="Email" required>
           </div>
           <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone">
+            <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" required>
           </div>
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" name="Username" class="form-control" placeholder="Username">
+            <input type="text" id="username" name="Username" class="form-control" placeholder="Username" required>
           </div>  
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="text" id="password" name="Password" class="form-control" placeholder="Password"> 
+            <input type="text" id="password" name="Password" class="form-control" placeholder="Password" required> 
           </div>
 
           <div class="mt-4">
-            <button class="btn btn-primary" type="submit">Save</button>
-          </div>  
+            <button class="btn btn-primary" type="submit">Save</button> <button class="btn btn-primary" id="canclebtn" style="margin-left: 20px; background-color: red;">Cancle</button>
+          </div> 
         </form>
-
-
 
       </div>
 
       <!-- Main Content -->
-      <%- include('layouts/scripts'); -%>
+      <script>
+        // onClick canclebtn button return to admin page
+        document.getElementById("canclebtn").onclick = function () {
+          location.href = "/admin";
+        };
+
+      </script>
+      <%- include('../layouts/scripts'); -%>
   </body>
 
 </html>
