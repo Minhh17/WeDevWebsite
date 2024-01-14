@@ -2,9 +2,18 @@ const Student = require("../models/student");
 const Account = require("../models/account");
 const Lecturer = require("../models/lecturer");
 
+// import format date
+const { format, parseISO } = require("date-fns");
+
 //---------------- ADMIN CONTROLLER ---------------
 exports.getIndex = async (req, res, next) => {
   students = await Student.getAllStudents();
+
+  // format date of birth
+  for (const student of students) {
+    student.dob = format(student.dob, "yyyy-MM-dd");
+  }
+
   res.render("admin/index", {
     isLogged: req.session.user ? true : false,
     account: req.session.user,
@@ -46,7 +55,7 @@ exports.postAddStudent = async (req, res, next) => {
   const address = req.body.address;
   const avatar = null;
   const email = req.body.email;
-  const dob = null;
+  const dob = req.body.dob;
 
   const username = req.body.username;
   const password = req.body.password;
@@ -73,7 +82,10 @@ exports.postAddStudent = async (req, res, next) => {
 
 exports.getStudent = async (req, res, next) => {
   const student_id = req.params.student_id;
-  const student = await Student.getStudentById(student_id);
+  let student = await Student.getStudentById(student_id);
+  // format date of birth
+  student.dob = format(student.dob, "yyyy-MM-dd");
+
   const student_account = await Account.getAccountById(student_id);
   res.render("admin/student-detail", {
     isLogged: req.session.user ? true : false,
@@ -85,15 +97,16 @@ exports.getStudent = async (req, res, next) => {
   });
 };
 
+// update student
 exports.postStudent = (req, res, next) => {
   const student_id = req.body.student_id;
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const phone = req.body.phone;
-  const address = null;
+  const address = req.body.address;
   const avatar = null;
   const email = req.body.email;
-  const dob = null;
+  const dob = req.body.dob;
 
   const username = req.body.username;
   const password = req.body.password;
@@ -157,7 +170,7 @@ exports.postAddLecturer = async (req, res, next) => {
   const address = req.body.address;
   const avatar = null;
   const email = req.body.email;
-  const dob = null;
+  const dob = req.body.dob;
   const info = req.body.info;
 
   const username = req.body.username;
