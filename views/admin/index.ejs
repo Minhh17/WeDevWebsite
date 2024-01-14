@@ -106,7 +106,8 @@
               <th scope="col">Email</th>
               <th scope="col">Phone</th>
               <th scope="col">Date Of Birth</th>
-              <th scope="col">Result</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody id="mytable">
@@ -119,6 +120,20 @@
               <td><%= student.phone %></td>
               <td><%= student.dob %></td>
               <td><%= student.result %></td>
+              <td>
+                <a
+                  href="/admin/students/<%= student.student_id %>"
+                  class="btn btn-link"
+                  >Edit</a
+                >
+              </td>
+              <td>
+                <a
+                  href="/admin/students/delete/<%= student.student_id %>"
+                  class="btn btn-link"
+                  >Delete</a
+                >
+              </td>
             </tr>
             <% }); %>
           </tbody>

@@ -1,6 +1,11 @@
 const Account = require("../models/account");
 
 exports.getLogin = (req, res, next) => {
+  // handle if user already logged in
+  if (req.session.user) {
+    return res.redirect("/");
+  }
+
   res.render("auth/login", {
     path: "/login",
     pageTitle: "Login",

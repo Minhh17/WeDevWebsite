@@ -14,3 +14,18 @@ exports.getIndex = async (req, res, next) => {
     path: "/",
   });
 };
+
+// upload image
+
+exports.showForm = (req, res) => {
+  res.render("upload");
+};
+
+exports.uploadImage = (req, res) => {
+  try {
+    console.log(`File uploaded: ${req.file.filename}`);
+    res.send("File uploaded!");
+  } catch (err) {
+    res.status(500).send("Error uploading image");
+  }
+};

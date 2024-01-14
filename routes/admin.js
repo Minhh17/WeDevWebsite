@@ -34,9 +34,9 @@ router.post(
   adminController.postStudent
 );
 
-// admin/students/:student_id => DELETE
-router.delete(
-  "/students/:student_id",
+// admin/students/delete/:student_id => GET
+router.get(
+  "/students/delete/:student_id",
   checkRole("admin"),
   adminController.deleteStudent
 );
