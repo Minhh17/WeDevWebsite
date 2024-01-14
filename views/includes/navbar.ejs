@@ -1,0 +1,106 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand"
+      href="/"
+      style="margin-right: 80px; margin-left: 10px"
+    >
+      <img
+        src="https://scontent.fhan19-1.fna.fbcdn.net/v/t1.15752-9/385529879_904689731307776_8198077295922466135_n.png?stp=dst-png_p206x206&_nc_cat=111&ccb=1-7&_nc_sid=510075&_nc_eui2=AeGW14HQCK2MDK-Jc2cqBHe-uHLRt9vH5t64ctG328fm3s7afoSKU5BerknVwr6_qkrGaWVVjV62XpkOlBpV9p4n&_nc_ohc=qJOb-yDlXb0AX9RXihe&_nc_ht=scontent.fhan19-1.fna&oh=03_AdSRVgOf9PMYEcGRCP_i37ZQe8qIys53My7QCK5N9AbZMQ&oe=65AF4C4B"
+        alt="Logo"
+        style="width: 32px"
+      />
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/about">AboutUs</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/student">References</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Courses
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#minh">IELTS Premium</a></li>
+            <li><a class="dropdown-item" href="#minh">IELTS VIP GOLDEN</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit" id="searchAll">
+          Search
+        </button>
+      </form>
+
+      <% if (account) { %>
+      <img
+        style="margin-left: 580px; margin-right: 10px"
+        src="https://avatars.githubusercontent.com/u/91320296?s=48&v=4"
+        class="user-avatar"
+        alt=""
+      />
+      <div class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Xin chào, <%= account.username %>
+        </a>
+        <ul class="dropdown-menu" style="margin-left: 10px">
+          <li>
+            <!-- get href from controller -->
+            <a
+              class="dropdown-item"
+              href="
+              <% if (account.role == "admin") { %>
+                /admin
+              <% } if (account.role == "student") { %>
+                /student
+              <% } if (account.role == "lecturer") { %>
+                /lecturer
+              <% } %>
+              "
+              >Dashboard</a
+            >
+          </li>
+          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+      <% } else { %>
+      <button class="btn btn-outline-success" style="margin-left: 720px">
+        <a class="nav-link" href="/register">Register</a>
+      </button>
+      <button class="btn btn-outline-success" style="margin-left: 10px">
+        <a class="nav-link" href="/login">Login</a>
+      </button>
+
+      <% } %>
+      <script>
+        // get role user from session
+      </script>
+    </div>
+  </div>
+</nav>
