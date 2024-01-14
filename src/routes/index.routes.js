@@ -10,6 +10,11 @@ function routes(app) {
     res.render('index', {account: req.session.account });
   });
 
+  app.get('/profile', (req, res) => {
+    res.render('profile', {account: req.session.account });
+  });
+    
+
   app.use('/admin', adminRouter);
 
   app.use('/student', studentRouter);
