@@ -1,15 +1,14 @@
 const Student = require('../models/student');
 
+
 class AdminController {   // function handler 
 
     // [GET] /news
     index(req, res) {
         console.log(req.session.account);
         Student.getDataFromDB(req.query.title, (err, data) => {
-            if (err) {
-                res.status(500).send({
-                    message: err.message || "Some error occurred while retrieving students."
-                });
+            if (err || req.session.account == null) {
+                res.render('page404.ejs');
             } else {
                 res.render('admin/admin', { data: data, account: req.session.account }); // Pass the data to the view
             }
@@ -27,7 +26,7 @@ class AdminController {   // function handler
 
         Student.create(req.body);  // call create function in model
 
-        res.redirect('/student');
+        res.redirect('/admin/admin');
 
     }
 
