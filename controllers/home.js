@@ -1,5 +1,10 @@
 const Course = require("../models/course");
+const Student = require("../models/student");
+const Admin = require("../models/admin");
 const Lecturer = require("../models/lecturer");
+
+// import format date
+const { format, parseISO } = require("date-fns");
 
 //------------- STUDENT CONTROLLER --------------
 exports.getIndex = async (req, res, next) => {
@@ -12,6 +17,33 @@ exports.getIndex = async (req, res, next) => {
     Lecturer: lecturers,
     pageTitle: "English Center",
     path: "/",
+  });
+};
+// ------------- END STUDENT CONTROLLER --------------
+
+//------------- ACCOUNT CONTROLLER --------------
+exports.getProfile = async (req, res, next) => {
+  // handle if user not logged in
+  if (!req.session.user) {
+    return res.redirect("/login");
+  }
+
+  if (req.session.user.role === "student") {
+    info = await Student.getStudentById(req.session.user.id);
+  } else if (req.session.user.role === "admin")
+    info = await Admin.getAdminById(req.session.user.id);
+  else {
+    info = await Lecturer.getLecturerById(req.session.user.id);
+  }
+
+  // format dob
+  info.dob = format(lecturer.dob, "yyyy-MM-dd");
+
+  res.render("home/profile", {
+    isLogged: req.session.user ? true : false,
+    account: req.session.user,
+    pageTitle: "Profile",
+    path: "/profile",
   });
 };
 

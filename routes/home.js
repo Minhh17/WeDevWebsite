@@ -6,6 +6,9 @@ const router = express.Router();
 
 router.get("/", shopController.getIndex);
 
+// get profile
+router.get("/profile", shopController.getProfile);
+
 // upload image
 const uploadMiddleware = require("../middleware/upload");
 router.get("/upload", shopController.showForm);

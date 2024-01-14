@@ -152,6 +152,12 @@ exports.deleteStudent = (req, res, next) => {
 // ------------- LETURER CONTROLLER -------------
 exports.getLecturers = async (req, res, next) => {
   const lecturers = await Lecturer.getAllLecturers();
+
+  // format date of birth
+  for (const lecturer of lecturers) {
+    lecturer.dob = format(lecturer.dob, "yyyy-MM-dd");
+  }
+
   res.render("admin/lecturers", {
     isLogged: req.session.user ? true : false,
     account: req.session.user,
@@ -262,6 +268,13 @@ exports.postAddLecturer = async (req, res, next) => {
   lecturer_id = addLecturerStatus[0].insertId;
   const account = new Account(username, password, 1, null, lecturer_id, null);
   Account.addAccount(account);
+  res.redirect("/admin/lecturers");
+};
+
+exports.deleteLecturer = (req, res, next) => {
+  const lecturer_id = req.params.lecturer_id;
+  Lecturer.deleteLecturer(lecturer_id);
+  Account.deleteAccount(lecturer_id);
   res.redirect("/admin/lecturers");
 };
 // ------------- END ----------------

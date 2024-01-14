@@ -1,6 +1,6 @@
 const db = require("../util/database");
 
-module.exports = class Lecturer {
+module.exports = class Admin {
   constructor(
     admin_id,
     first_name,
@@ -66,6 +66,29 @@ module.exports = class Lecturer {
       );
       return result;
     } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getAdminById(admin_id) {
+    try {
+      const [rows, fields] = await db.execute(
+        "SELECT * FROM english_center.admin WHERE admin_id = ?",
+        [admin_id]
+      );
+      const admin = rows[0];
+      return new Admin(
+        admin.admin_id,
+        admin.first_name,
+        admin.last_name,
+        admin.phone,
+        admin.address,
+        admin.avatar,
+        admin.email,
+        admin.dob
+      );
+    } catch (err) {
+      console.log(err);
       throw err;
     }
   }

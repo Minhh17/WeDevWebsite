@@ -79,6 +79,13 @@ router.post(
   adminController.postAddLecturer
 );
 
+// /admin/lecturers/delete/:lecturer_id => GET
+router.get(
+  "/lecturers/delete/:lecturer_id",
+  checkRole("admin"),
+  adminController.deleteLecturer
+);
+
 // ------------ END --------------
 
 // ------------ COURSE CONTROLLER ------------
