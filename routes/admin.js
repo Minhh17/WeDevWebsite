@@ -57,6 +57,28 @@ router.post(
   checkRole("admin"),
   adminController.postAddLecturer
 );
+
+// /admin/lecturer/:lecturer_id => GET
+router.get(
+  "/lecturers/:lecturer_id",
+  checkRole("admin"),
+  adminController.getLecturer
+);
+
+// /admin/lecturer/:lecturer_id => POST
+router.post(
+  "/lecturers/:lecturer_id",
+  checkRole("admin"),
+  adminController.postLecturer
+);
+
+// /admin/add-lecturer => POST
+router.post(
+  "/add-lecturer",
+  checkRole("admin"),
+  adminController.postAddLecturer
+);
+
 // ------------ END --------------
 
 // ------------ COURSE CONTROLLER ------------

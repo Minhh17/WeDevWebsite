@@ -16,7 +16,6 @@ exports.postLogin = async (req, res, next) => {
   const user = await Account.checkAccount(username, password);
 
   if (user.length > 0) {
-    console.log("Login successfully");
     let username, id, role;
     switch (user[0].user_type) {
       case 0:
@@ -42,7 +41,6 @@ exports.postLogin = async (req, res, next) => {
     };
     res.redirect("/");
   } else {
-    console.log("Login failed");
     res.redirect("/login");
   }
 };

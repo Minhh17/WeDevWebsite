@@ -17,18 +17,18 @@
       "
     >
       <h1 style="margin: 20px">
-        <%= student.first_name + " " + student.last_name %>
+        <%= lecturer.first_name + " " + lecturer.last_name %>
       </h1>
 
       <form method="POST" action="<%= path %>">
         <div class="form-group">
-          <label for="student_id">Student Id</label>
+          <label for="student_id">Lecturer Id</label>
           <input
             type="text"
             id="student_id"
             name="student_id"
             class="form-control"
-            value="<%= student_account.student_id %>"
+            value="<%= lecturer_account.lecturer_id %>"
             disabled
           />
         </div>
@@ -39,7 +39,7 @@
             id="first_name"
             name="first_name"
             class="form-control"
-            value="<%= student.first_name %>"
+            value="<%= lecturer.first_name %>"
             required
           />
         </div>
@@ -50,7 +50,7 @@
             id="last_name"
             name="last_name"
             class="form-control"
-            value="<%= student.last_name %>"
+            value="<%= lecturer.last_name %>"
             required
           />
         </div>
@@ -62,7 +62,7 @@
             id="dob"
             name="dob"
             class="form-control"
-            value="<%= student.dob %>"
+            value="<%= lecturer.dob %>"
             required
           />
         </div>
@@ -74,7 +74,7 @@
             id="email"
             name="email"
             class="form-control"
-            value="<%= student.email %>"
+            value="<%= lecturer.email %>"
             required
           />
         </div>
@@ -85,7 +85,7 @@
             id="phone"
             name="phone"
             class="form-control"
-            value="<%= student.phone %>"
+            value="<%= lecturer.phone %>"
             required
           />
         </div>
@@ -96,7 +96,18 @@
             id="address"
             name="address"
             class="form-control"
-            value="<%= student.address %>"
+            value="<%= lecturer.address %>"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="info">Infomation</label>
+          <input
+            type="text"
+            id="info"
+            name="info"
+            class="form-control"
+            value="<%= lecturer.info %>"
             required
           />
         </div>
@@ -107,7 +118,7 @@
             id="username"
             name="username"
             class="form-control"
-            value="<%= student_account.username %>"
+            value="<%= lecturer_account.username %>"
             required
           />
         </div>
@@ -118,7 +129,7 @@
             id="password"
             name="password"
             class="form-control"
-            value="<%= student_account.password %>"
+            value="<%= lecturer_account.password %>"
             required
           />
         </div>
