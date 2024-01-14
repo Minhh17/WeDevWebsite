@@ -43,7 +43,20 @@ router.delete(
 
 // ------------- END --------------
 
-// ------------ TEACHER CONTROLLER ------------
+// ------------ LECTURER CONTROLLER ------------
+
+// /admin/lecturers => GET
+router.get("/lecturers", checkRole("admin"), adminController.getLecturers);
+
+// /admin/add-lecturer => GET
+router.get("/add-lecturer", checkRole("admin"), adminController.getAddLecturer);
+
+// /admin/add-lecturer => POST
+router.post(
+  "/add-lecturer",
+  checkRole("admin"),
+  adminController.postAddLecturer
+);
 // ------------ END --------------
 
 // ------------ COURSE CONTROLLER ------------

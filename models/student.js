@@ -76,7 +76,17 @@ module.exports = class Student {
         "SELECT * FROM english_center.student WHERE student_id = ?",
         [student_id]
       );
-      return rows[0];
+      const student = rows[0];
+      return new Student(
+        student.student_id,
+        student.first_name,
+        student.last_name,
+        student.phone,
+        student.address,
+        student.avatar,
+        student.email,
+        student.dob
+      );
     } catch (err) {
       console.log(err);
       throw err;

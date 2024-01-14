@@ -1,5 +1,6 @@
 const Student = require("../models/student");
 const Account = require("../models/account");
+const Lecturer = require("../models/lecturer");
 
 //---------------- ADMIN CONTROLLER ---------------
 exports.getIndex = async (req, res, next) => {
@@ -42,7 +43,7 @@ exports.postAddStudent = async (req, res, next) => {
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const phone = req.body.phone;
-  const address = null;
+  const address = req.body.address;
   const avatar = null;
   const email = req.body.email;
   const dob = null;
@@ -125,6 +126,63 @@ exports.deleteStudent = (req, res, next) => {
 //---------------- END ----------------
 
 // ------------- LETURER CONTROLLER -------------
+exports.getLecturers = async (req, res, next) => {
+  const lecturers = await Lecturer.getAllLecturers();
+  res.render("admin/lecturers", {
+    isLogged: req.session.user ? true : false,
+    account: req.session.user,
+    lecturers: lecturers,
+    pageTitle: "Lecturers",
+    path: "/admin/lecturers",
+  });
+};
+
+exports.getAddLecturer = (req, res, next) => {
+  res.render("admin/add-lecturer", {
+    isLogged: req.session.user ? true : false,
+    account: req.session.user,
+    pageTitle: "Add Lecturer",
+    path: "/admin/add-lecturer",
+    formsCSS: true,
+    productCSS: true,
+    activeAddLecturer: true,
+  });
+};
+
+exports.postAddLecturer = async (req, res, next) => {
+  let lecturer_id = null;
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
+  const phone = req.body.phone;
+  const address = req.body.address;
+  const avatar = null;
+  const email = req.body.email;
+  const dob = null;
+  const info = req.body.info;
+
+  const username = req.body.username;
+  const password = req.body.password;
+
+  const lecturer = new Lecturer(
+    lecturer_id,
+    first_name,
+    last_name,
+    phone,
+    address,
+    avatar,
+    email,
+    dob,
+    info
+  );
+  // add lecturer
+  const addLecturerStatus = await Lecturer.addLecturer(lecturer);
+
+  // add account
+  lecturer_id = addLecturerStatus[0].insertId;
+  const account = new Account(username, password, 1, null, lecturer_id, null);
+  Account.addAccount(account);
+  res.redirect("/");
+};
 // ------------- END ----------------
 
 // ------------- COURSE CONTROLLER -------------
