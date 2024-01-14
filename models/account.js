@@ -20,7 +20,7 @@ module.exports = class Account {
   static async checkAccount(username, password) {
     try {
       const [rows, fields] = await db.execute(
-        "SELECT * FROM english_center.account WHERE username = ? AND password = ?",
+        "SELECT * FROM english_center.account WHERE username = binary ? AND password = binary ?",
         [username, password]
       );
       return rows;

@@ -26,6 +26,12 @@ exports.getIndex = async (req, res, next) => {
 //------------- STUDENT CONTROLLER --------------
 exports.getStudents = async (req, res, next) => {
   students = await Student.getAllStudents();
+
+  // format date of birth
+  for (const student of students) {
+    student.dob = format(student.dob, "yyyy-MM-dd");
+  }
+
   res.render("admin/students", {
     isLogged: req.session.user ? true : false,
     account: req.session.user,
@@ -77,24 +83,29 @@ exports.postAddStudent = async (req, res, next) => {
   student_id = addStudentStatus[0].insertId;
   const account = new Account(username, password, 2, null, null, student_id);
   Account.addAccount(account);
-  res.redirect("/admin");
+  res.redirect("/admin/students");
 };
 
 exports.getStudent = async (req, res, next) => {
-  const student_id = req.params.student_id;
-  let student = await Student.getStudentById(student_id);
-  // format date of birth
-  student.dob = format(student.dob, "yyyy-MM-dd");
+  try {
+    const student_id = req.params.student_id;
+    let student = await Student.getStudentById(student_id);
+    // format date of birth
+    student.dob = format(student.dob, "yyyy-MM-dd");
 
-  const student_account = await Account.getAccountById(student_id);
-  res.render("admin/student-detail", {
-    isLogged: req.session.user ? true : false,
-    account: req.session.user,
-    student: student,
-    student_account: student_account,
-    pageTitle: "Student Detail",
-    path: "/admin/students/" + student_id,
-  });
+    const student_account = await Account.getAccountById(student_id);
+    res.render("admin/student-detail", {
+      isLogged: req.session.user ? true : false,
+      account: req.session.user,
+      student: student,
+      student_account: student_account,
+      pageTitle: "Student Detail",
+      path: "/admin/students/" + student_id,
+    });
+  } catch (err) {
+    console.log(err);
+    res.redirect("/admin");
+  }
 };
 
 // update student
@@ -127,14 +138,14 @@ exports.postStudent = (req, res, next) => {
   // update account
   const account = new Account(username, password, 2, null, null, student_id);
   Account.updateAccount(account);
-  res.redirect("/admin");
+  res.redirect("/admin/students");
 };
 
 exports.deleteStudent = (req, res, next) => {
   const student_id = req.params.student_id;
   Student.deleteStudent(student_id);
   Account.deleteAccount(student_id);
-  res.redirect("/admin");
+  res.redirect("/admin/students");
 };
 //---------------- END ----------------
 
@@ -163,21 +174,26 @@ exports.getAddLecturer = (req, res, next) => {
 };
 
 exports.getLecturer = async (req, res, next) => {
-  const lecturer_id = req.params.lecturer_id;
-  const lecturer = await Lecturer.getLecturerById(lecturer_id);
+  try {
+    const lecturer_id = req.params.lecturer_id;
+    const lecturer = await Lecturer.getLecturerById(lecturer_id);
 
-  // format date of birth
-  lecturer.dob = format(lecturer.dob, "yyyy-MM-dd");
+    // format date of birth
+    lecturer.dob = format(lecturer.dob, "yyyy-MM-dd");
 
-  const lecturer_account = await Account.getAccountById(lecturer_id);
-  res.render("admin/lecturer-detail", {
-    isLogged: req.session.user ? true : false,
-    account: req.session.user,
-    lecturer: lecturer,
-    lecturer_account: lecturer_account,
-    pageTitle: "Lecturer Detail",
-    path: "/admin/lecturers/" + lecturer_id,
-  });
+    const lecturer_account = await Account.getAccountById(lecturer_id);
+    res.render("admin/lecturer-detail", {
+      isLogged: req.session.user ? true : false,
+      account: req.session.user,
+      lecturer: lecturer,
+      lecturer_account: lecturer_account,
+      pageTitle: "Lecturer Detail",
+      path: "/admin/lecturers/" + lecturer_id,
+    });
+  } catch (err) {
+    console.log(err);
+    res.redirect("/admin");
+  }
 };
 
 exports.postLecturer = (req, res, next) => {
@@ -211,7 +227,7 @@ exports.postLecturer = (req, res, next) => {
   // update account
   const account = new Account(username, password, 1, null, lecturer_id, null);
   Account.updateAccount(account);
-  res.redirect("/admin");
+  res.redirect("/admin/lecturers");
 };
 
 exports.postAddLecturer = async (req, res, next) => {
@@ -246,7 +262,7 @@ exports.postAddLecturer = async (req, res, next) => {
   lecturer_id = addLecturerStatus[0].insertId;
   const account = new Account(username, password, 1, null, lecturer_id, null);
   Account.addAccount(account);
-  res.redirect("/admin");
+  res.redirect("/admin/lecturers");
 };
 // ------------- END ----------------
 
@@ -259,6 +275,6 @@ exports.postAddCourse = (req, res, next) => {
   const thumbnail = req.body.thumbnail;
   const course = new Course(title, infomation, ref, fee, thumbnail);
   Course.addCourse(course);
-  res.redirect("/admin");
+  res.redirect("/admin/courses");
 };
 // ------------- END ----------------
