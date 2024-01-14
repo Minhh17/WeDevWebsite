@@ -29,7 +29,7 @@
                                 Courses
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#minh">IELTS Premium</a></li>
+                                <li><a class="dropdown-item" href="#minh">IELTS Life Skill</a></li>
                                 <li><a class="dropdown-item" href="#minh">IELTS VIP GOLDEN</a></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
@@ -42,15 +42,16 @@
             </form>
 
             <% if (locals.account && locals.account.role==='admin' ) { %>
-                <img style="margin-left: 580px; margin-right: 10px" src="https://avatars.githubusercontent.com/u/91320296?s=48&v=4" class="user-avatar" alt="">
+                <img style="margin-left: 700px; margin-right: 10px" src="https://avatars.githubusercontent.com/u/91320296?s=48&v=4" class="user-avatar" alt="">
                 <div class="nav-item dropdown">                    
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         User: <%= locals.account.role %>
                     </a>
-                    <ul class="dropdown-menu" style="margin-left: 10px;">
+                    <ul class="dropdown-menu ">
+                        <li><a class="dropdown-item" href="/profile">My Profile</a></li>
+                        <hr>
                         <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
-                        <li><a class="dropdown-item" href="#minh">VJP</a></li>
                     </ul>
                 </div>
                 <% } else { %>
