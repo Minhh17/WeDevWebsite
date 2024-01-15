@@ -16,6 +16,9 @@ function routes(app) {
   app.get('/ielts', (req, res) => {
     res.render('courses/ielts', {account: req.session.account });
   }); 
+  app.get('/about', (req, res) => {
+    res.render('aboutus');
+  }); 
 
   app.use('/admin', adminRouter);
 
