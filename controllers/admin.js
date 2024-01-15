@@ -126,7 +126,9 @@ exports.postStudent = (req, res, next) => {
   let avatar = null;
   try {
     avatar = req.file.filename;
-  } catch {}
+  } catch {
+    avatar = req.body.avatar ? req.body.avatar : null;
+  }
 
   const email = req.body.email;
   const dob = req.body.dob;
@@ -146,7 +148,6 @@ exports.postStudent = (req, res, next) => {
     dob
   );
 
-  console.log(student);
   Student.updateStudent(student);
 
   // update account

@@ -28,6 +28,9 @@
                                                         class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i> -->
                                                     <div id="avatar-preview"><img src="<% if (student.avatar == null) {
                                                         %>/img/no-avatar.jpg<%} else {%>/upload/<%= student.avatar%><%}%>" alt="avatar" class="img-fluid rounded"></div>
+
+                                                        <!-- handle update infomation but image is empty -->
+                                                        <input type="text" value="<%= student.avatar%>"  class="form-control" name="avatar" hidden>
                                                 </div>
                                                 <!-- Button -->
                                                 <input type="file" id="customFile" name="image" accept="image/*" hidden="" onchange="previewImage()">
