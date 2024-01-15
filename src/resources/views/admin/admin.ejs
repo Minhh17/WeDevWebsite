@@ -33,8 +33,8 @@
                     <div class="dropdown">
                         <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                             id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://avatars.githubusercontent.com/u/91320296?s=40&v=4" alt="" width="32" height="32"
-                                class="rounded-circle me-2">
+                            <img src="https://avatars.githubusercontent.com/u/91320296?s=40&v=4" alt="" width="32"
+                                height="32" class="rounded-circle me-2">
                             <strong>user admin</strong>
                         </a>
                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
@@ -52,12 +52,13 @@
                 <!------------------------------------ main content ----------------------------------------------------->
                 <div class="adminContent">
                     <div>
-                        <button type="button" class="btn btn-light" onclick="window.location.href='/admin/createStudent'">Add
+                        <button type="button" class="btn btn-light"
+                            onclick="window.location.href='/admin/createStudent'">Add
                             Student</button>
-                        <button type="button" class="btn btn-light" onclick="window.location.href='/admin/createStudent'">Add
+                        <button type="button" class="btn btn-light"
+                            onclick="window.location.href='/admin/createStudent'">Add
                             Student</button>
-                        <button type="button" class="btn btn-light" onclick="window.location.href='/admin/createStudent'">Add
-                            Student</button>
+                        <a href="/admin/createStudent" class="btn btn-light">Add Student</a>
 
                     </div>
 
@@ -77,47 +78,100 @@
                             </tr>
                         </thead>
                         <tbody id="mytable">
-
-                            <% data.forEach(student=> { %>
-                                <tr>
-                                    <td>
-                                        <%= student.student_id %>
-                                    </td>
-                                    <td>
-                                        <%= student.first_name %>
-                                    </td>
-                                    <td>
-                                        <%= student.last_name %>
-                                    </td>
-                                    <td>
-                                        <%= student.email %>
-                                    </td>
-                                    <td>
-                                        <%= student.phone %>
-                                    </td>
-                                    <td>
-                                        <%= student.dob.getDate () %>/<%= student.dob.getMonth()+1 %>/<%= student.dob.getFullYear() %>                                        
-                                    </td>
-                                    <td>
-                                        <a href="" class="btn btn-link">Edit</a>                                        
-                                    </td>
-                                    <td>
-                                        <a href="" class="btn btn-link">Delete</a>                                        
-                                    </td>
-                                </tr>
-                                <% }); %>
+                            <% let index=1; %>
+                                <% data.forEach(student=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= index++ %>
+                                        </td>
+                                        <td>
+                                            <%= student.first_name %>
+                                        </td>
+                                        <td>
+                                            <%= student.last_name %>
+                                        </td>
+                                        <td>
+                                            <%= student.email %>
+                                        </td>
+                                        <td>
+                                            <%= student.phone %>
+                                        </td>
+                                        <td>
+                                            <%= student.dob.getDate() %>/<%= student.dob.getMonth()+1 %>/<%=
+                                                        student.dob.getFullYear() %>
+                                        </td>
+                                        <td>
+                                            <a href="/admin/edit/<%= student.student_id %>"
+                                                class="btn btn-link">Edit</a>
+                                        </td>
+                                        <td>
+                                            <!-- <a href="" class="btn btn-link" data-toggle="modal" data-target="#delete-student-modal">Delete</a>     -->
+                                            <button class="btn btn-link" data-bs-toggle="modal"
+                                                data-bs-target="#delete-student-modal"
+                                                data-bs-id="<%= student.student_id %>">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
                         </tbody>
                     </table>
                 </div>
                 <hr>
+                <!-- Confirm Delete -->
+                <div id="delete-student-modal" class="modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete Confirm</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure about that? Delete anyway?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="btn-delete-student" type="button" class="btn btn-danger">Delete</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- delete hidden form -->
+                <form name="delete-student-form" method="POST"></form>
+
                 <!------------------------------------ main content ------------------------------------>
             </div>
 
             <div class="footerGif"><iframe src="https://giphy.com/embed/QaYqtStGSYNd21aXQp" width="100%" height="100%"
                     style="position:absolute" frameBorder="0"></iframe></div>
+
+            <script>
+                var deleteStudentModal = document.getElementById('delete-student-modal')
+                let studentId
+                let deleteStudentForm = document.forms['delete-student-form']
+
+                deleteStudentModal.addEventListener('show.bs.modal', function (event) {
+                    // Button that triggered the modal
+                    let button = event.relatedTarget
+                    studentId = button.getAttribute('data-bs-id')
+                    console.log(studentId)
+
+                    var btnDeleteStudent = document.getElementById('btn-delete-student');
+                    console.log(btnDeleteStudent)
+
+                    btnDeleteStudent.onclick = function () {
+                        // location.href = "/admin/delete/" + recipient;
+                        // alert("Delete student with id: " + studentId)
+                        deleteStudentForm.action = "/admin/delete/" + studentId + "?_method=DELETE"
+                        deleteStudentForm.submit()
+                    };
+
+                })
+            </script>
             <%- include('../layouts/scripts'); -%>
                 <%- include('../layouts/footer'); -%>
-    </body>
 
+
+    </body>
 
 </html>

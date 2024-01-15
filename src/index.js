@@ -2,14 +2,18 @@ const express = require('express');
 const routes = require('./routes/index.routes');
 const db = require('./config/db/index');
 const morgan = require('morgan'); // bắn ra log ở local vs các request đến node server
-const ejs = require('ejs') // template engine handlebarsconst { engine } = require('express-handlebars');
+const ejs = require('ejs');
+const session = require("express-session");
+const methodOverride = require('method-override');
 const app = express();
 const port = 3000;
 const path = require('path');
-const session = require("express-session");
+
 
 
 app.use(express.static(path.join(__dirname,'public'))); // set đường dẫn public
+app.use(methodOverride('_method')); // set method override (dung PUT, DELETE)
+
 console.log(path.join(__dirname,'public'));
 
 // HTTP logger

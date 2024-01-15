@@ -14,7 +14,7 @@ function routes(app) {
     res.render('profile', {account: req.session.account });
   });
   app.get('/ielts', (req, res) => {
-    res.render('ielts', {account: req.session.account });
+    res.render('courses/ielts', {account: req.session.account });
   }); 
 
   app.use('/admin', adminRouter);

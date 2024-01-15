@@ -8,7 +8,9 @@ router.get('/', adminController.index);  // boc tach ro rang controller va vs mo
 router.get('/createStudent', adminController.createStudent);
 router.post('/save', adminController.save);
 router.get('/getData', adminController.getDataFromDB);
-// router.get('/edit/:id', adminController.edit);
+router.get('/edit/:id', adminController.edit);
+router.put('/update/:id', adminController.update);
+router.delete('/delete/:id', adminController.destroy);
 // router.post('/update/:id', adminController.update);
 // router.post('/delete/:id', adminController.delete);
 
