@@ -37,7 +37,7 @@ exports.getProfile = async (req, res, next) => {
   }
 
   // format dob
-  info.dob = format(lecturer.dob, "yyyy-MM-dd");
+  info.dob = format(info.dob, "yyyy-MM-dd");
 
   res.render("home/profile", {
     isLogged: req.session.user ? true : false,

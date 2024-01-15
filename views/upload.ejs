@@ -4,11 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Upload</title>
+    <style>
+      #preview {
+        max-width: 100%;
+        max-height: 200px;
+        margin-top: 20px;
+      }
+    </style>
   </head>
   <body>
     <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="image" accept="image/*" />
+      <input
+        type="file"
+        id="fileInput"
+        name="image"
+        accept="image/*"
+        onchange="previewImage()"
+      />
       <button type="submit">Upload</button>
     </form>
+
+    <div id="preview"></div>
+
+    <script>
+      function previewImage() {
+        var fileInput = document.getElementById("fileInput");
+        var preview = document.getElementById("preview");
+
+        if (fileInput.files && fileInput.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            preview.innerHTML =
+              '<img src="' + e.target.result + '" alt="Preview">';
+          };
+
+          reader.readAsDataURL(fileInput.files[0]);
+        }
+      }
+    </script>
   </body>
 </html>

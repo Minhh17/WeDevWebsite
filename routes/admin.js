@@ -4,6 +4,9 @@ const adminController = require("../controllers/admin");
 
 const checkRole = require("../middleware/check-role");
 
+// import upload middleware
+const uploadMiddleware = require("../middleware/upload");
+
 const router = express.Router();
 
 // ------------ STUDENT CONTROLLER ------------
@@ -18,7 +21,12 @@ router.get("/students", checkRole("admin"), adminController.getStudents);
 router.get("/add-student", checkRole("admin"), adminController.getAddStudent);
 
 // /admin/add-student => POST
-router.post("/add-student", checkRole("admin"), adminController.postAddStudent);
+router.post(
+  "/add-student",
+  checkRole("admin"),
+  uploadMiddleware,
+  adminController.postAddStudent
+);
 
 // /admin/students/:student_id => GET
 router.get(
@@ -31,6 +39,7 @@ router.get(
 router.post(
   "/students/:student_id",
   checkRole("admin"),
+  uploadMiddleware,
   adminController.postStudent
 );
 

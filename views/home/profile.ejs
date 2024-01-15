@@ -24,17 +24,18 @@
                                             <div class="text-center">
                                                 <!-- Image upload -->
                                                 <div class="square position-relative display-2 mb-3">
-                                                    <i
-                                                        class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+                                                    <!-- <i
+                                                        class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i> -->
+                                                    <div id="avatar-preview"><img src="<% if (info.avatar == null) {
+                                                        %>/img/no-avatar.jpg<%} else {%>upload/<%= info.avatar%><%}%>" alt="avatar" class="img-fluid rounded"></div>
                                                 </div>
                                                 <!-- Button -->
-                                                <input type="file" id="customFile" name="file" hidden="">
+                                                <input type="file" id="customFile" name="image" accept="image/*" hidden="" onchange="previewImage()">
                                                 <label class="btn btn-success-soft btn-block"
                                                     for="customFile">Upload</label>
-                                                <button type="button" class="btn btn-danger-soft">Remove</button>
+                                                <button type="button" class="btn btn-danger-soft" onclick="removeImage()">Remove</button>
                                                 <!-- Content -->
-                                                <p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Minimum
-                                                    size 300px x 300px</p>
+                                                <p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Photo size 2x3</p>
                                             </div>
                                         </div>
                                     </div>
@@ -131,6 +132,30 @@
             <!-- Main Content -->
             <%- include('../includes/scripts'); -%>
                 <%- include('../includes/footer'); -%>
+
+                <script>
+                    function previewImage() {
+                      var fileInput = document.getElementById("customFile");
+                      var preview = document.getElementById("avatar-preview");
+              
+                      if (fileInput.files && fileInput.files[0]) {
+                        var reader = new FileReader();
+              
+                        reader.onload = function (e) {
+                          preview.innerHTML =
+                            '<img src="' + e.target.result + '" alt="Preview" class="img-fluid rounded">';
+                        };
+              
+                        reader.readAsDataURL(fileInput.files[0]);
+                      }
+                    }
+                    function removeImage() {
+                        var avatarPreview = document.getElementById('avatar-preview');
+                        avatarPreview.innerHTML = '<img src="/img/no-avatar.jpg" alt="avatar" class="img-fluid rounded">';
+                        // You can also reset the input field value if needed
+                        document.getElementById('customFile').value = '';
+                    }
+                  </script>
     </body>
 
 </html>

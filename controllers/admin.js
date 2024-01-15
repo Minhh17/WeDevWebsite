@@ -59,7 +59,13 @@ exports.postAddStudent = async (req, res, next) => {
   const last_name = req.body.last_name;
   const phone = req.body.phone;
   const address = req.body.address;
-  const avatar = null;
+
+  // check if avatar is uploaded
+  let avatar = null;
+  try {
+    avatar = req.file.filename;
+  } catch {}
+
   const email = req.body.email;
   const dob = req.body.dob;
 
@@ -115,7 +121,13 @@ exports.postStudent = (req, res, next) => {
   const last_name = req.body.last_name;
   const phone = req.body.phone;
   const address = req.body.address;
-  const avatar = null;
+
+  // check if avatar is uploaded
+  let avatar = null;
+  try {
+    avatar = req.file.filename;
+  } catch {}
+
   const email = req.body.email;
   const dob = req.body.dob;
 
@@ -133,6 +145,8 @@ exports.postStudent = (req, res, next) => {
     email,
     dob
   );
+
+  console.log(student);
   Student.updateStudent(student);
 
   // update account
