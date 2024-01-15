@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../includes/header'); -%>
+
+    <body>
+        <%- include('../includes/navbar'); -%>
+            <!-- Page Header -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Page title -->
+                        <div class="my-5">
+                            <h3><%= course.title %></h3>
+                            <hr>
+                        </div>
+                        <!-- Form START -->
+                        <form method="POST" action="<%= path %>" enctype="multipart/form-data" class="file-upload">
+                            <div class="row gx-5 mb-5">
+                                <!-- Upload profile -->
+                                <div class="col-xxl-4 mb-5">
+                                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                                        <div class="row g-3">
+                                            <h4 class="mb-4 mt-0">Upload thumbnail</h4>
+                                            <div class="text-center">
+                                                <!-- Image upload -->
+                                                <div class="square position-relative display-2 mb-3">
+                                                    <!-- <i
+                                                        class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i> -->
+                                                    <div id="avatar-preview"><img src="<% if (course.thumbnail == null) {
+                                                        %>/img/no-avatar.jpg<%} else {%>/upload/<%= course.thumbnail%><%}%>" alt="thumbnail" class="img-fluid rounded"></div>
+
+                                                        <!-- handle update infomation but image is empty -->
+                                                        <input type="text" value="<%= course.thumbnail%>"  class="form-control" name="thumbnail" hidden>
+                                                </div>
+                                                <!-- Button -->
+                                                <input type="file" id="customFile" name="image" accept="image/*" hidden="" onchange="previewImage()">
+                                                <label class="btn btn-success-soft btn-block"
+                                                    for="customFile">Upload</label>
+                                                <button type="button" class="btn btn-danger-soft" onclick="removeImage()">Remove</button>
+                                                <!-- Content -->
+                                                <p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Photo size 2x3</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Profile detail -->
+                                <div class="col-xxl-8 mb-5 mb-xxl-0">
+                                    <div class="bg-secondary-soft px-4 py-5     rounded">
+                                        <div class="row g-3 mb-5">
+                                            <h4 class="mb-4 mt-0">Course detail</h4>
+                                            <!-- Title -->
+                                            <div class="col-md-12">
+                                                <label class="form-label">Title *</label>
+                                                <input name="title" type="text" class="form-control" placeholder="Tiếng Anh Cơ Sở"
+                                                    aria-label="Title" value="<%= course.title %>" required>
+                                            </div>
+                                            <!-- Infomation -->
+                                            <div class="col-md-12">
+                                                <label class="form-label">Infomation *</label>
+                                                <input name="infomation" type="text" class="form-control" placeholder="Tiếng Anh dành cho người mất gốc"
+                                                    aria-label="Infomation" value="<%= course.infomation %>" required>
+                                            </div>
+                                            <!-- References -->
+                                            <div class="col-md-12">
+                                                <label class="form-label">Ref *</label>
+                                                <input name="ref" type="text" class="form-control" placeholder="https://drive.google.com/drive/folders/1jJys7KQucD8IdmO7_od0MScfKOBPFzoa?usp=sharing"
+                                                    aria-label="References" value="<%= course.ref %>" required>
+                                            </div>
+                                            <!-- Fee -->
+                                            <div class="col-md-12">
+                                                <label class="form-label">Fee (VNĐ) *</label>
+                                                <input name="fee" type="text" class="form-control" placeholder="500000"
+                                                    aria-label="Fee" value="<%= course.fee %>" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- Row END -->
+                    </div>
+                </div>
+
+                <div class="col-xxl-6">
+                </div> <!-- Row END -->
+                <!-- Button -->
+                <div class="gap-3 d-md-flex justify-content-md-end text-center mb-5">
+                    <a href="delete/<%= course.course_id %>"><button type="button" class="btn btn-danger-soft btn-lg">Delete profile</button></a>
+                    <button type="submit" class="btn btn-success-soft btn-lg">Update profile</button>
+                </div>
+
+                </form> <!-- Form END -->
+            </div> <!-- Container END -->
+
+            <!-- Main Content -->
+            <%- include('../includes/scripts'); -%>
+                <%- include('../includes/footer'); -%>
+
+                <script>
+                    function previewImage() {
+                      var fileInput = document.getElementById("customFile");
+                      var preview = document.getElementById("avatar-preview");
+              
+                      if (fileInput.files && fileInput.files[0]) {
+                        var reader = new FileReader();
+              
+                        reader.onload = function (e) {
+                          preview.innerHTML =
+                            '<img src="' + e.target.result + '" alt="Preview" class="img-fluid rounded">';
+                        };
+              
+                        reader.readAsDataURL(fileInput.files[0]);
+                      }
+                    }
+                    function removeImage() {
+                        var avatarPreview = document.getElementById('avatar-preview');
+                        avatarPreview.innerHTML = '<img src="/img/no-avatar.jpg" alt="avatar" class="img-fluid rounded">';
+                        // You can also reset the input field value if needed
+                        document.getElementById('customFile').value = '';
+                    }
+                  </script>
+    </body>
+
+</html>

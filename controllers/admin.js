@@ -1,6 +1,7 @@
 const Student = require("../models/student");
 const Account = require("../models/account");
 const Lecturer = require("../models/lecturer");
+const Course = require("../models/course");
 
 // import format date
 const { format, parseISO } = require("date-fns");
@@ -254,7 +255,6 @@ exports.postLecturer = (req, res, next) => {
     dob,
     info
   );
-  console.log(lecturer);
   Lecturer.updateLecturer(lecturer);
 
   // update account
@@ -316,13 +316,95 @@ exports.deleteLecturer = (req, res, next) => {
 
 // ------------- COURSE CONTROLLER -------------
 exports.postAddCourse = (req, res, next) => {
+  const course_id = null;
   const title = req.body.title;
   const infomation = req.body.infomation;
   const ref = req.body.ref;
   const fee = req.body.fee;
-  const thumbnail = req.body.thumbnail;
-  const course = new Course(title, infomation, ref, fee, thumbnail);
+
+  // check if avatar is uploaded
+  let thumbnail = null;
+  try {
+    thumbnail = req.file.filename;
+  } catch {}
+
+  const course = new Course(course_id, title, infomation, ref, fee, thumbnail);
+  console.log(course);
   Course.addCourse(course);
+  res.redirect("/admin/courses");
+};
+
+// get courses
+exports.getCourses = async (req, res, next) => {
+  const courses = await Course.getAllCourses();
+  res.render("admin/courses", {
+    isLogged: req.session.user ? true : false,
+    account: req.session.user,
+    courses: courses,
+    pageTitle: "Courses",
+    path: "/admin/courses",
+  });
+};
+
+// get add course
+exports.getAddCourse = (req, res, next) => {
+  res.render("admin/add-course", {
+    isLogged: req.session.user ? true : false,
+    account: req.session.user,
+    pageTitle: "Add Course",
+    path: "/admin/add-course",
+    formsCSS: true,
+    productCSS: true,
+    activeAddLecturer: true,
+  });
+};
+
+// get course detail
+exports.getCourse = async (req, res, next) => {
+  try {
+    const course_id = req.params.course_id;
+    const course = await Course.getCourseById(course_id);
+
+    res.render("admin/course-detail", {
+      isLogged: req.session.user ? true : false,
+      account: req.session.user,
+
+      course: course,
+      pageTitle: "Course Detail",
+      path: "/admin/courses/" + course_id,
+    });
+  } catch (err) {
+    console.log(err);
+    res.redirect("/admin");
+  }
+};
+
+// update course
+exports.postCourse = (req, res, next) => {
+  const course_id = req.params.course_id;
+  const title = req.body.title;
+  const infomation = req.body.infomation;
+  const ref = req.body.ref;
+  const fee = req.body.fee;
+
+  // check if avatar is uploaded
+  let thumbnail = null;
+  try {
+    thumbnail = req.file.filename;
+  } catch {
+    thumbnail = req.body.thumbnail ? req.body.thumbnail : null;
+  }
+
+  const course = new Course(course_id, title, infomation, ref, fee, thumbnail);
+  Course.updateCourse(course);
+
+  res.redirect("/admin/courses");
+};
+
+// delete course
+exports.deleteCourse = (req, res, next) => {
+  const course_id = req.params.course_id;
+  Course.deleteCourse(course_id);
   res.redirect("/admin/courses");
 };
 // ------------- END ----------------

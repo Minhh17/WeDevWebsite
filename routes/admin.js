@@ -100,7 +100,37 @@ router.get(
 // ------------ END --------------
 
 // ------------ COURSE CONTROLLER ------------
-router.post("/add-course", checkRole("admin"), adminController.postAddCourse);
+// /admin/courses => GET
+router.get("/courses", checkRole("admin"), adminController.getCourses);
+// admin/add-course => GET
+router.get("/add-course", checkRole("admin"), adminController.getAddCourse);
+// admin/add-course => POST
+router.post(
+  "/add-course",
+  checkRole("admin"),
+  uploadMiddleware,
+  adminController.postAddCourse
+);
+// /admin/courses/:lecturer_id => GET
+router.get(
+  "/courses/:course_id",
+  checkRole("admin"),
+  adminController.getCourse
+);
+
+// /admin/courses/:course_id => POST
+router.post(
+  "/courses/:course_id",
+  checkRole("admin"),
+  uploadMiddleware,
+  adminController.postCourse
+);
+// /admin/courses/delete/:course_id => GET
+router.get(
+  "/courses/delete/:course_id",
+  checkRole("admin"),
+  adminController.deleteCourse
+);
 // ------------ END --------------
 
 module.exports = router;
