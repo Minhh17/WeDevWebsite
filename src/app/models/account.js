@@ -14,7 +14,7 @@ const Account = function(account) {  // constructor function
 
 
 Account.checkAccount = (username, password, callback) => {
-    sql.query("SELECT * FROM account WHERE username = ? AND password = ?", [username, password], (err, res) => {
+    sql.query("SELECT * FROM account WHERE username = binary ? AND password = binary ?", [username, password], (err, res) => {
         if (err) {
             console.log("Error: ", err);
             callback(err, null);

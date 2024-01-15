@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../layouts/header'); -%>
+
+  <body style="background-image: url(/img/bg.jpg); background-repeat: no-repeat;">    
+      <!-- Page Header -->
+
+      <div class="bodyContainer"
+        style="height: 65%; width: 66%; background-color: rgb(236, 255, 237); border-radius: 15px; margin-top: 2%;">
+
+        <h2 style="margin: 20px;">Update Student</h2>
+
+        <form method="POST" action="/admin/update/<%= data.student_id %> ?_method=PUT">
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="form-control" value="<%= data.first_name %>" placeholder="First Name" value="<%= data.first_name %>" required>
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="form-control" value="<%= data.last_name %>" placeholder="Last Name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" class="form-control" value="<%= data.email %>" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone" class="form-control" value="<%= data.phone %>" placeholder="Phone" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Address</label>
+            <input type="text" id="address" name="address" class="form-control" value="<%= data.address %>" placeholder="Address" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Date Of Birth</label>
+            <input type="date" id="dob" name="dob" class="form-control" value="<%= data.dob %>" placeholder="Date Of Birth" required>
+          </div>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="Username" class="form-control" value="<%= data.username %>" placeholder="Username" required>
+          </div>  
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="Password" class="form-control" value="<%= data.first_name %>" placeholder="Password" required> 
+          </div>
+
+          <div class="mt-4">
+            <button class="btn btn-primary" type="submit">Save</button> <button class="btn btn-primary" id="canclebtn" style="margin-left: 20px; background-color: red;">Cancle</button>
+          </div> 
+        </form>
+
+      </div>
+
+      <!-- Main Content -->
+      <script>
+        // onClick canclebtn button return to admin page
+        document.getElementById("canclebtn").onclick = function () {
+          location.href = "/admin";
+        };
+
+      </script>
+      <%- include('../layouts/scripts'); -%>
+  </body>
+
+</html>
