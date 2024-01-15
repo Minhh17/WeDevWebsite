@@ -1,124 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../includes/header'); -%>
+<%- include('../includes/header'); -%>
 
-  <body>
-    <%- include('../includes/navbar'); -%>
-    <!-- Page Header -->
+    <body>
+        <%- include('../includes/navbar'); -%>
+            <!-- Page Header -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Page title -->
+                        <div class="my-5">
+                            <h3>Add Lecturer</h3>
+                            <hr>
+                        </div>
+                        <!-- Form START -->
+                        <form method="POST" action="/admin/add-lecturer" enctype="multipart/form-data" class="file-upload">
+                            <div class="row gx-5 mb-5">
+                                <!-- Upload profile -->
+                                <div class="col-xxl-4 mb-5">
+                                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                                        <div class="row g-3">
+                                            <h4 class="mb-4 mt-0">Upload your profile photo</h4>
+                                            <div class="text-center">
+                                                <!-- Image upload -->
+                                                <div class="square position-relative display-2 mb-3">
+                                                    <!-- <i
+                                                        class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i> -->
+                                                    <div id="avatar-preview"><img src="/img/no-avatar.jpg" alt="avatar" class="img-fluid rounded"></div>
+                                                </div>
+                                                <!-- Button -->
+                                                <input type="file" id="customFile" name="image" accept="image/*" hidden="" onchange="previewImage()">
+                                                <label class="btn btn-success-soft btn-block"
+                                                    for="customFile">Upload</label>
+                                                <button type="button" class="btn btn-danger-soft" onclick="removeImage()">Remove</button>
+                                                <!-- Content -->
+                                                <p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Photo size 2x3</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Profile detail -->
+                                <div class="col-xxl-8 mb-5 mb-xxl-0">
+                                    <div class="bg-secondary-soft px-4 py-5     rounded">
+                                        <div class="row g-3 mb-5">
+                                            <h4 class="mb-4 mt-0">Profile detail</h4>
+                                            <!-- First Name -->
+                                            <div class="col-md-6">
+                                                <label class="form-label">First Name *</label>
+                                                <input name="first_name" type="text" class="form-control" placeholder="Nguyen Hai"
+                                                    aria-label="First name" required>
+                                            </div>
+                                            <!-- Last name -->
+                                            <div class="col-md-6">
+                                                <label class="form-label">Last Name *</label>
+                                                <input name="last_name" type="text" class="form-control" placeholder="Minh"
+                                                    aria-label="Last name" required>
+                                            </div>
+                                            <!-- Phone number -->
+                                            <div class="col-md-6">
+                                                <label class="form-label">Phone number *</label>
+                                                <input name="phone" type="text" class="form-control" placeholder="0827050981"
+                                                    aria-label="Phone number" required>
+                                            </div>
+                                            <!-- Address -->
+                                            <div class="col-md-6">
+                                                <label class="form-label">Address *</label>
+                                                <input name="address" type="text" class="form-control" placeholder="Hai Duong Viet Nam"
+                                                    aria-label="Address" required>
+                                            </div>
+                                            <!-- Email -->
+                                            <div class="col-md-6">
+                                                <label for="inputEmail4" class="form-label">Email *</label>
+                                                <input name="email" type="email" class="form-control" placeholder="minh@gmail.com" id="inputEmail4"
+                                                required>
+                                            </div>
+                                            <!-- Date of birth -->
+                                            <div class="col-md-6">
+                                                <label for="inputEmail4" class="form-label">Date of birth *</label>
+                                                <input name="dob" type="date" class="form-control" required>
+                                            </div>                                            
+                                            <!-- Infomation -->
+                                            <div class="col-md-12">
+                                              <label class="form-label">Infomation *</label>
+                                              <input name="info" type="text" class="form-control" placeholder="Giảng viên Tiếng Anh cơ bản"
+                                                  aria-label="Infomation" required>
+                                          </div>
+                                        </div>
+                                        <hr>
+                                        <!-- Account -->
+                                        <div class="px-4 mb-5 rounded">
+                                            <div class="row g-3">
+                                                <h4 class="my-4">Account</h4>
+                                                <!-- Username -->
+                                                <div class="col-md-12">
+                                                  <label for="exampleInputPassword3" class="form-label">
+                                                      Username
+                                                      *</label>
+                                                  <input name="username" type="text" class="form-control"
+                                                      id="exampleInputPassword3" required>
+                                              </div>
 
-    <div
-      class="bodyContainer"
-      style="
-        height: 65%;
-        width: 66%;
-        background-color: rgb(236, 255, 237);
-        border-radius: 15px;
-        margin-top: 2%;
-      "
-    >
-      <h1 style="margin: 20px">Add Lecturer</h1>
+                                                <!-- password -->
+                                                <div class="col-md-12">
+                                                    <label for="exampleInputPassword1" class="form-label">
+                                                        Password
+                                                        *</label>
+                                                    <input name="password" type="text" class="form-control"
+                                                        id="exampleInputPassword1" required>
+                                                </div>
+                                                
+                                            </div>
 
-      <form method="POST" action="/admin/add-lecturer">
-        <div class="form-group">
-          <label for="first_name">First Name</label>
-          <input
-            type="text"
-            id="first_name"
-            name="first_name"
-            class="form-control"
-            placeholder="First Name"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="last_name">Last Name</label>
-          <input
-            type="text"
-            id="last_name"
-            name="last_name"
-            class="form-control"
-            placeholder="Last Name"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="dob">Date of birth</label>
-          <input type="date" id="dob" name="dob" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Email"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone</label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            class="form-control"
-            placeholder="Phone"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="address">Address</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            class="form-control"
-            placeholder="Address"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="info">Infomation</label>
-          <input
-            type="text"
-            id="info"
-            name="info"
-            class="form-control"
-            placeholder="Infomation"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            class="form-control"
-            placeholder="Username"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="text"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Password"
-            required
-          />
-        </div>
+                                        </div> <!-- Row END -->
+                                    </div>
+                                </div>
+                            </div> <!-- Row END -->
+                    </div>
+                </div>
 
-        <div class="mt-4">
-          <button class="btn btn-primary" type="submit">Save</button>
-        </div>
-      </form>
-    </div>
+                <div class="col-xxl-6">
+                </div> <!-- Row END -->
+                <!-- Button -->
+                <div class="gap-3 d-md-flex justify-content-md-end text-center mb-5">
+                    <button type="submit" class="btn btn-success-soft">Update profile</button>
+                </div>
 
-    <!-- Main Content -->
-    <%- include('../includes/scripts'); -%>
-  </body>
+                </form> <!-- Form END -->
+            </div> <!-- Container END -->
+
+            <!-- Main Content -->
+            <%- include('../includes/scripts'); -%>
+                <%- include('../includes/footer'); -%>
+
+                <script>
+                    function previewImage() {
+                      var fileInput = document.getElementById("customFile");
+                      var preview = document.getElementById("avatar-preview");
+              
+                      if (fileInput.files && fileInput.files[0]) {
+                        var reader = new FileReader();
+              
+                        reader.onload = function (e) {
+                          preview.innerHTML =
+                            '<img src="' + e.target.result + '" alt="Preview" class="img-fluid rounded">';
+                        };
+              
+                        reader.readAsDataURL(fileInput.files[0]);
+                      }
+                    }
+                    function removeImage() {
+                        var avatarPreview = document.getElementById('avatar-preview');
+                        avatarPreview.innerHTML = '<img src="/img/no-avatar.jpg" alt="avatar" class="img-fluid rounded">';
+                        // You can also reset the input field value if needed
+                        document.getElementById('customFile').value = '';
+                    }
+                  </script>
+    </body>
+
 </html>

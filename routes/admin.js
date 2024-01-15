@@ -64,6 +64,7 @@ router.get("/add-lecturer", checkRole("admin"), adminController.getAddLecturer);
 router.post(
   "/add-lecturer",
   checkRole("admin"),
+  uploadMiddleware,
   adminController.postAddLecturer
 );
 
@@ -78,6 +79,7 @@ router.get(
 router.post(
   "/lecturers/:lecturer_id",
   checkRole("admin"),
+  uploadMiddleware,
   adminController.postLecturer
 );
 

@@ -19,7 +19,6 @@ exports.postLogin = async (req, res, next) => {
 
   // get info from database
   const user = await Account.checkAccount(username, password);
-  console.log(user);
   if (user.length > 0) {
     let username, id, role;
     switch (user[0].user_type) {

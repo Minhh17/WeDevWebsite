@@ -165,6 +165,7 @@ exports.deleteStudent = (req, res, next) => {
 //---------------- END ----------------
 
 // ------------- LETURER CONTROLLER -------------
+// get lecturers
 exports.getLecturers = async (req, res, next) => {
   const lecturers = await Lecturer.getAllLecturers();
 
@@ -182,6 +183,7 @@ exports.getLecturers = async (req, res, next) => {
   });
 };
 
+// get add lecturer page
 exports.getAddLecturer = (req, res, next) => {
   res.render("admin/add-lecturer", {
     isLogged: req.session.user ? true : false,
@@ -194,6 +196,7 @@ exports.getAddLecturer = (req, res, next) => {
   });
 };
 
+// get lecturer detail
 exports.getLecturer = async (req, res, next) => {
   try {
     const lecturer_id = req.params.lecturer_id;
@@ -217,20 +220,28 @@ exports.getLecturer = async (req, res, next) => {
   }
 };
 
+// post update lecturer
 exports.postLecturer = (req, res, next) => {
   const lecturer_id = req.params.lecturer_id;
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const phone = req.body.phone;
   const address = req.body.address;
-  const avatar = null;
+
+  // check if avatar is uploaded
+  let avatar = null;
+  try {
+    avatar = req.file.filename;
+  } catch {
+    avatar = req.body.avatar ? req.body.avatar : null;
+  }
+
   const email = req.body.email;
   const dob = req.body.dob;
   const info = req.body.info;
 
   const username = req.body.username;
   const password = req.body.password;
-
   // update lecturer
   const lecturer = new Lecturer(
     lecturer_id,
@@ -243,6 +254,7 @@ exports.postLecturer = (req, res, next) => {
     dob,
     info
   );
+  console.log(lecturer);
   Lecturer.updateLecturer(lecturer);
 
   // update account
@@ -251,13 +263,20 @@ exports.postLecturer = (req, res, next) => {
   res.redirect("/admin/lecturers");
 };
 
+// post add lecturer
 exports.postAddLecturer = async (req, res, next) => {
   let lecturer_id = null;
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const phone = req.body.phone;
   const address = req.body.address;
-  const avatar = null;
+
+  // check if avatar is uploaded
+  let avatar = null;
+  try {
+    avatar = req.file.filename;
+  } catch {}
+
   const email = req.body.email;
   const dob = req.body.dob;
   const info = req.body.info;
@@ -286,6 +305,7 @@ exports.postAddLecturer = async (req, res, next) => {
   res.redirect("/admin/lecturers");
 };
 
+// delete lecturer
 exports.deleteLecturer = (req, res, next) => {
   const lecturer_id = req.params.lecturer_id;
   Lecturer.deleteLecturer(lecturer_id);
