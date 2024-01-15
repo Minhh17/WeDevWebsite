@@ -2,7 +2,6 @@
 <html lang="en">
 <%- include('../layouts/header'); -%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.2/dist/bootstrap-table.min.css" rel="stylesheet">
-
     <body>
         <%- include('../layouts/navbar'); -%>
             <!-- Page Header -->
@@ -89,8 +88,7 @@
                             </tr>
                         </thead>
                         <tbody id="mytable">
-                            <% let index=1; %>
-                                <!-- <% data.sort((a, b) => a.last_name.localeCompare(b.last_name)); %> -->
+                            <% let index=1; %>                                
                                 <% data.forEach(student=> { %>
                                     <tr>
                                         <td>
@@ -117,7 +115,6 @@
                                                 class="btn btn-link">Edit</a>
                                         </td>
                                         <td>
-                                            <!-- <a href="" class="btn btn-link" data-toggle="modal" data-target="#delete-student-modal">Delete</a>     -->
                                             <button class="btn btn-link" data-bs-toggle="modal"
                                                 data-bs-target="#delete-student-modal"
                                                 data-bs-id="<%= student.student_id %>">Delete</button>
