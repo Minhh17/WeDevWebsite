@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../layouts/header'); -%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.2/dist/bootstrap-table.min.css" rel="stylesheet">
 
     <body>
         <%- include('../layouts/navbar'); -%>
@@ -54,31 +55,42 @@
                     <div>
                         <button type="button" class="btn btn-light"
                             onclick="window.location.href='/admin/createStudent'">Add
-                            Student</button>
-                        <button type="button" class="btn btn-light"
+                            Student
+                        </button>
+                        <button id="toolbar" class="select btn" style="margin: 0; width: 140   px;">
+                            <select class="form-control">
+                                <option value="">Export Basic</option>
+                                <option value="all">Export All</option>
+                                <option value="selected">Export Selected</option>
+                            </select>
+                        </button>
+                        <!-- <button type="button" class="btn btn-light"
                             onclick="window.location.href='/admin/createStudent'">Add
                             Student</button>
-                        <a href="/admin/createStudent" class="btn btn-light">Add Student</a>
+                        <a href="/admin/createStudent" class="btn btn-light">Add Student</a> -->
 
                     </div>
 
                     <hr>
 
-                    <table class="table">
+                    <table id="table" data-toggle="table" data-search="true" data-pagination="true" data-sortable="true"
+                        data-page-size="8" data-show-fullscreen="true" data-show-toggle="true"
+                        data-export-types="['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf']">
                         <thead>
                             <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Date Of Birth</th>
+                                <th scope="col" data-sortable="true">STT</th>
+                                <th scope="col" data-sortable="true">First Name</th>
+                                <th scope="col" data-sortable="true">Last Name</th>
+                                <th scope="col" data-sortable="true">Email</th>
+                                <th scope="col" data-sortable="true">Phone</th>
+                                <th scope="col" data-sortable="true">Date Of Birth</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody id="mytable">
                             <% let index=1; %>
+                                <!-- <% data.sort((a, b) => a.last_name.localeCompare(b.last_name)); %> -->
                                 <% data.forEach(student=> { %>
                                     <tr>
                                         <td>
@@ -169,6 +181,8 @@
                 })
             </script>
             <%- include('../layouts/scripts'); -%>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.2/dist/bootstrap-table.min.js"></script>
+
                 <%- include('../layouts/footer'); -%>
 
 
