@@ -4,6 +4,7 @@ Website here: https://test.tienichhust.com
 Admin account: admin:admin
 
 Run project:
+- Switch to branch backend
 - In project folder open two terminal
 - In each terminal run command: 'npm start' and 'npm run watch'
 - In broswer access local at port 3000: http://127.0.0.1:3000/
