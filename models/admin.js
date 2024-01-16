@@ -92,4 +92,25 @@ module.exports = class Admin {
       throw err;
     }
   }
+  static updateAdmin(admin) {
+    try {
+      console.log(admin);
+      const result = db.execute(
+        "UPDATE english_center.admin SET first_name = ?, last_name = ?, phone = ?, address = ?, avatar = ?, email = ?, dob = ? WHERE admin_id = ?",
+        [
+          admin.first_name,
+          admin.last_name,
+          admin.phone,
+          admin.address,
+          admin.avatar,
+          admin.email,
+          admin.dob,
+          admin.admin_id,
+        ]
+      );
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
 };

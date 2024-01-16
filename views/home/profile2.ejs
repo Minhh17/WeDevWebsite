@@ -14,7 +14,7 @@
                             <hr>
                         </div>
                         <!-- Form START -->
-                        <form method="POST" action="/update-profile" class="file-upload">
+                        <form class="file-upload">
                             <div class="row gx-5">
                                 <!-- Upload profile -->
                                 <div class="col-xxl-4 mb-5">
@@ -24,24 +24,23 @@
                                             <div class="text-center">
                                                 <!-- Image upload -->
                                                 <div class="square position-relative display-2 mb-3">
-                                                    <div id="avatar-preview"><img src="<% if (info.avatar == null) {
-                                                        %>/img/no-avatar.jpg<%} else {%>upload/<%= info.avatar%><%}%>" alt="avatar" class="img-fluid rounded"></div>
-                                                        <!-- handle update infomation but image is empty -->
-                                                        <input type="text" value="<%= info.avatar%>"  class="form-control" name="avatar" hidden>
+                                                    <i
+                                                        class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
                                                 </div>
                                                 <!-- Button -->
-                                                <input type="file" id="customFile" name="image" accept="image/*" hidden="" onchange="previewImage()">
+                                                <input type="file" id="customFile" name="file" hidden="">
                                                 <label class="btn btn-success-soft btn-block"
                                                     for="customFile">Upload</label>
-                                                <button type="button" class="btn btn-danger-soft" onclick="removeImage()">Remove</button>
+                                                <button type="button" class="btn btn-danger-soft">Remove</button>
                                                 <!-- Content -->
-                                                <p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Photo size 2x3</p>
+                                                <p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Minimum
+                                                    size 300px x 300px</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Profile detail -->
-                                <div class="col-xxl-8 mb-xxl-0">
+                                <div class="col-xxl-8 mb-5 mb-xxl-0">
                                     <div class="bg-secondary-soft px-4 py-5     rounded">
                                         <div class="row g-3 mb-5">
                                             <h4 class="mb-4 mt-0">Profile detail</h4>
@@ -49,53 +48,58 @@
                                             <div class="col-md-6">
                                                 <label class="form-label">First Name *</label>
                                                 <input type="text" class="form-control" placeholder="Nguyen Hai"
-                                                    aria-label="First name" name="first_name" value="<%= info.first_name%>">
+                                                    aria-label="First name" value="Nguyen Hai">
                                             </div>
                                             <!-- Last name -->
                                             <div class="col-md-6">
                                                 <label class="form-label">Last Name *</label>
                                                 <input type="text" class="form-control" placeholder="Minh"
-                                                    aria-label="Last name" name="last_name" value="<%= info.last_name%>">
+                                                    aria-label="Last name" value="Minh">
                                             </div>
                                             <!-- Phone number -->
                                             <div class="col-md-6">
                                                 <label class="form-label">Phone number *</label>
                                                 <input type="text" class="form-control" placeholder="0827050981"
-                                                    aria-label="Phone number" name="phone" value="<%= info.phone%>">
+                                                    aria-label="Phone number" value="0827050981">
                                             </div>
                                             <!-- Address -->
                                             <div class="col-md-6">
                                                 <label class="form-label">Address *</label>
                                                 <input type="text" class="form-control" placeholder="Hai Duong Viet Nam"
-                                                    aria-label="Address" name="address" value="<%= info.address%>">
+                                                    aria-label="Address" value="Hai Duong Viet Nam">
                                             </div>
                                             <!-- Email -->
                                             <div class="col-md-6">
                                                 <label for="inputEmail4" class="form-label">Email *</label>
-                                                <input type="email" class="form-control" name="email" id="inputEmail4"
-                                                    value="<%= info.email%>">
+                                                <input type="email" class="form-control" id="inputEmail4"
+                                                    value="haiminh@hust.com">
                                             </div>
                                             <!-- Date of birth -->
                                             <div class="col-md-6">
                                                 <label for="inputEmail4" class="form-label">Date of birth *</label>
-                                                <input type="date" class="form-control" name="dob" value="<%= info.dob%>">
+                                                <input type="date" class="form-control" value="17/10/2003">
                                             </div>                                            
                                         </div>
-                                        <!-- Button -->
-                                        <div class="gap-3 d-md-flex justify-content-md-end mb-5">
-                                            <a href="/delete-account"><button type="button" class="btn btn-danger">Delete profile</button></a>
-                                            <button type="submit" class="btn btn-success">Update profile</button>
-                                        </div>
+                                        <hr>                                        
                                     </div>
                                 </div>
                             </div> <!-- Row END -->
                     </div>
                 </div>
+
+                <div class="col-xxl-6">
+                </div> <!-- Row END -->
+                <!-- Button -->
+                <div class="gap-3 d-md-flex justify-content-md-end mb-5">
+                    <button type="button" class="btn btn-danger btn-lg">Delete profile</button>
+                    <button type="button" class="btn btn-primary btn-lg">Update profile</button>
+                </div>
+
                 </form> <!-- Form END -->
                 <hr>
 
                 <!-- Change password -->
-                <form method="POST" action="/change-password">
+                <form action="">
                     <!-- change password -->
                     <div class="bg-secondary-soft px-4 py-5 rounded">
                         <div class="row g-3">
@@ -105,7 +109,7 @@
                                 <label for="exampleInputPassword1" class="form-label">Old
                                     password
                                     *</label>
-                                <input type="password" class="form-control" name="old_password"
+                                <input type="password" class="form-control"
                                     id="exampleInputPassword1">
                             </div>
                             <!-- New password -->
@@ -113,7 +117,7 @@
                                 <label for="exampleInputPassword2" class="form-label">New
                                     password
                                     *</label>
-                                <input type="password" class="form-control" name="new_password"
+                                <input type="password" class="form-control"
                                     id="exampleInputPassword2">
                             </div>
                             <!-- Confirm password -->
@@ -121,45 +125,22 @@
                                 <label for="exampleInputPassword3" class="form-label">Confirm
                                     Password
                                     *</label>
-                                <input type="password" class="form-control" name="confirm_password"
+                                <input type="password" class="form-control"
                                     id="exampleInputPassword3">
                             </div>
                         </div>
-                        <!-- Button -->
-                        <div class="gap-3 mt-5 d-md-flex justify-content-md-end mb-5 me-5">
-                            <button type="submit" class="btn btn-success">Change Password</button>
-                        </div>
                     </div> <!-- Row END -->
+                    <div class="gap-3 mt-5 d-md-flex justify-content-md-end mb-5 me-5">
+                        <button type="button" class="btn btn-danger btn-lg">Change Pass</button>
+                        <button type="button" class="btn btn-primary btn-lg">Cancle</button>
+                    </div>
                 </form>
+
             </div> <!-- Container END -->
 
             <!-- Main Content -->
             <%- include('../includes/scripts'); -%>
                 <%- include('../includes/footer'); -%>
-
-                <script>
-                    function previewImage() {
-                      var fileInput = document.getElementById("customFile");
-                      var preview = document.getElementById("avatar-preview");
-              
-                      if (fileInput.files && fileInput.files[0]) {
-                        var reader = new FileReader();
-              
-                        reader.onload = function (e) {
-                          preview.innerHTML =
-                            '<img src="' + e.target.result + '" alt="Preview" class="img-fluid rounded">';
-                        };
-              
-                        reader.readAsDataURL(fileInput.files[0]);
-                      }
-                    }
-                    function removeImage() {
-                        var avatarPreview = document.getElementById('avatar-preview');
-                        avatarPreview.innerHTML = '<img src="/img/no-avatar.jpg" alt="avatar" class="img-fluid rounded">';
-                        // You can also reset the input field value if needed
-                        document.getElementById('customFile').value = '';
-                    }
-                  </script>
     </body>
 
 </html>

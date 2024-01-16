@@ -23,6 +23,7 @@ const adminRoutes = require("./routes/admin");
 const studentRoutes = require("./routes/student");
 const lecturerRoutes = require("./routes/lecturer");
 const homeRoutes = require("./routes/home");
+const account = require("./routes/account");
 const authRoutes = require("./routes/auth");
 
 // config session
@@ -43,6 +44,7 @@ app.use("/admin", adminRoutes);
 app.use("/student", studentRoutes);
 app.use("/lecturer", lecturerRoutes);
 app.use(homeRoutes);
+app.use(account);
 app.use(authRoutes);
 
 // use error controller

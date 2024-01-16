@@ -123,4 +123,15 @@ module.exports = class Account {
       throw err;
     }
   }
+
+  static changePassword(account_id, new_password) {
+    try {
+      const result = db.execute(
+        "UPDATE english_center.account SET password = ? WHERE student_id = ? OR admin_id = ? OR lecturer_id = ?",
+        [new_password, account_id, account_id, account_id]
+      );
+    } catch (err) {
+      throw err;
+    }
+  }
 };
