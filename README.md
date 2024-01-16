@@ -1,7 +1,7 @@
 # WeDevWebsite
 Website manage English center of WeDev team   
-Website here: https://test.tienichhust.com
-Admin account: admin:admin
+- Website here: https://test.tienichhust.com
+- Admin account: admin:admin
 
 Run project:
 - Switch to branch backend
